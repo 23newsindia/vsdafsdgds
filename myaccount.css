@@ -122,12 +122,13 @@ img {
 }
 
 /* ==============================================
-   Mobile Account Profile Section
+   Mobile Account Profile Section - Dashboard
    ============================================== */
 
 .myaccountmainmobile {
   background: var(--bg-white);
   width: 100%;
+  min-height: 100vh;
 }
 
 .myaccountmobile .profile {
@@ -200,7 +201,7 @@ img {
 }
 
 /* ==============================================
-   Mobile Navigation Tabs
+   Mobile Navigation Tabs - Dashboard
    ============================================== */
 
 .myaccountnavigationtab {
@@ -324,7 +325,7 @@ img {
 }
 
 /* Navigation menu - Hidden by default on mobile */
-.myaccountnavigationtab {
+.leftside-my-account .myaccountnavigationtab {
   display: none;
   padding: 20px;
 }
@@ -943,6 +944,12 @@ body.mobile-menu-open {
   overflow-x: hidden;
 }
 
+.updatesend-to div img {
+  width: 16px !important;
+  height: 16px !important;
+  flex-shrink: 0;
+}
+
 .upheading {
   color: #343434;
   font-size: 14px;
@@ -959,12 +966,6 @@ body.mobile-menu-open {
   word-wrap: break-word;
   overflow-wrap: break-word;
   width: 100%;
-}
-
-.updatesend-to div img {
-  width: 16px !important;
-  height: 16px !important;
-  flex-shrink: 0;
 }
 
 .updatesend-to div span {
