@@ -240,6 +240,50 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     };
 
+    // Avatar upload functionality
+    const initAvatarUpload = () => {
+        const avatarInput = document.getElementById('avatar-upload');
+        const avatarDisplay = document.querySelector('.snipcss0-0-0-1 p, .user-avatar');
+        
+        if (avatarInput && avatarDisplay) {
+            avatarInput.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    // Validate file type
+                    if (!file.type.startsWith('image/')) {
+                        showToast('Please select a valid image file');
+                        return;
+                    }
+                    
+                    // Validate file size (max 2MB)
+                    if (file.size > 2 * 1024 * 1024) {
+                        showToast('Image size should be less than 2MB');
+                        return;
+                    }
+                    
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        // Create image element
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.className = 'user-avatar-img';
+                        img.alt = 'User Avatar';
+                        
+                        // Replace the text avatar with image
+                        avatarDisplay.innerHTML = '';
+                        avatarDisplay.appendChild(img);
+                        
+                        showToast('Avatar updated successfully!');
+                        
+                        // Here you would typically upload to server
+                        // uploadAvatarToServer(file);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+    };
+
     // Show toast notification
     const showToast = (message) => {
         const toast = document.createElement('div');
@@ -285,4 +329,5 @@ document.addEventListener('DOMContentLoaded', function() {
     initFilterPopup();
     initOrderTracking();
     initCopyOrderId();
+    initAvatarUpload();
 });
