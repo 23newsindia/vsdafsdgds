@@ -153,7 +153,8 @@ img {
   height: 16px;
 }
 
-.profile .snipcss0-0-0-1 p {
+.profile .snipcss0-0-0-1 p,
+.profile .user-avatar {
   width: 80px;
   height: 80px;
   margin: auto;
@@ -469,6 +470,17 @@ body.mobile-menu-open {
   -webkit-box-orient: vertical;
 }
 
+.pname {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pname span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .order-product-details {
   display: flex;
   font-size: 12px;
@@ -522,6 +534,26 @@ body.mobile-menu-open {
   background: rgba(0, 163, 255, 0.1);
 }
 
+.p-status.status-completed,
+.p-status.status-delivered {
+  color: #00C853;
+  border: 1px solid #00C853;
+  background: rgba(0, 200, 83, 0.1);
+}
+
+.p-status.status-processing {
+  color: #00A3FF;
+  border: 1px solid #00A3FF;
+  background: rgba(0, 163, 255, 0.1);
+}
+
+.p-status.status-cancelled,
+.p-status.status-refunded {
+  color: #DC3545;
+  border: 1px solid #DC3545;
+  background: rgba(220, 53, 69, 0.1);
+}
+
 .p-status .mainstatus {
   text-transform: capitalize;
 }
@@ -562,6 +594,18 @@ body.mobile-menu-open {
   margin: 0;
 }
 
+.filter-button {
+  background: none;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.filteraccount {
+  width: 25px;
+  height: 25px;
+}
+
 /* ==============================================
    Order Info Container - COMPLETELY FIXED
    ============================================== */
@@ -579,60 +623,20 @@ body.mobile-menu-open {
   width: 100%;
   overflow-x: hidden;
   display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.orderinfo-box {
-  width: 100%;
-  max-width: 100%;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-/* FIXED: Each product item in its own container */
-.orderinfo-box > .pimg,
-.orderinfo-box > .pdetails {
-  display: flex;
   gap: 12px;
-  width: 100%;
-  max-width: 100%;
-  overflow: hidden;
-  margin-bottom: 15px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid rgba(245, 245, 245, 0.5);
 }
 
-.orderinfo-box > .pimg:last-of-type,
-.orderinfo-box > .pdetails:last-of-type {
-  border-bottom: none;
-  margin-bottom: 0;
-  padding-bottom: 0;
-}
-
-/* Product image container - FIXED */
 .orderinfo .pimg {
-  width: 90px;
-  min-width: 90px;
-  max-width: 90px;
-  height: 110px;
+  width: 35%;
+  min-height: 144px;
   position: relative;
   background: rgba(231, 231, 231, 1);
   border-radius: 8px;
   overflow: hidden;
-  flex-shrink: 0;
 }
 
-/* Product details container - FIXED */
 .orderinfo .pdetails {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  overflow: hidden;
+  width: 65%;
 }
 
 .imagemain {
@@ -714,14 +718,15 @@ body.mobile-menu-open {
 }
 
 .orderinfo .order-product-details {
-  display: flex;
-  flex-wrap: wrap;
-  font-size: 11px;
-  gap: 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-size: 12px;
+  gap: 6px;
   color: rgba(148, 148, 148, 1);
   text-transform: capitalize;
   font-weight: 400;
-  line-height: 1.3;
+  flex-wrap: wrap;
+  line-height: 1.4;
   margin-bottom: 4px;
 }
 
@@ -827,7 +832,7 @@ body.mobile-menu-open {
   flex-shrink: 0;
 }
 
-.icon-item svg {
+.icon-item img {
   width: 18px;
   height: 18px;
   min-width: 18px;
@@ -838,8 +843,8 @@ body.mobile-menu-open {
   border-color: var(--primary-color);
 }
 
-.icon-item.active svg path {
-  fill: var(--text-white);
+.icon-item.active img {
+  filter: brightness(0) invert(1);
 }
 
 .line {
@@ -1038,7 +1043,8 @@ body.mobile-menu-open {
    Sticky Help Button - Fixed Color
    ============================================== */
 
-.button-bottom-fixed {
+.button-bottom-fixed,
+.help-button-container {
   padding: 15px;
   position: fixed;
   z-index: 9;
@@ -1050,10 +1056,11 @@ body.mobile-menu-open {
 }
 
 .button-bottom-fixed a,
+.help-button-container a,
 .btn-yellow {
-  background: var(--primary-color) !important;
+  background: #FFE234 !important;
   text-transform: capitalize;
-  color: var(--text-white) !important;
+  color: #000 !important;
   font-weight: 800;
   border-radius: 6px;
   letter-spacing: 1px;
@@ -1070,14 +1077,220 @@ body.mobile-menu-open {
 }
 
 .button-bottom-fixed a:hover,
+.help-button-container a:hover,
 .btn-yellow:hover {
-  background: var(--primary-dark) !important;
+  background: #E6C800 !important;
   transform: translateY(-2px);
 }
 
-.button-bottom-fixed img {
+.button-bottom-fixed img,
+.help-button-container img {
   width: 20px;
   height: 20px;
+}
+
+/* ==============================================
+   Filter Popup Styles
+   ============================================== */
+
+.filterpopup {
+  max-height: 0%;
+  transition: max-height 0.30s ease-out;
+  overflow: hidden;
+  display: none;
+}
+
+.filterpopup .fixed {
+  background-color: rgba(32, 32, 32, .7);
+  position: fixed;
+  inset: 0px;
+  z-index: 9;
+  overflow-y: overlay;
+}
+
+.popupmain {
+  max-height: 0;
+  visibility: hidden;
+  display: block;
+  box-sizing: border-box;
+  position: fixed;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  z-index: 12;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden auto;
+  background-color: rgb(255, 255, 255);
+  border-radius: 8px 8px 0px 0px;
+  transition: max-height 0.5s ease-in-out;
+  padding: 20px 15px;
+}
+
+.filterpopup.show .popupmain {
+  max-height: 600px;
+  visibility: visible;
+}
+
+.poptopheading {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.productstatuspop {
+  margin-top: 30px;
+}
+
+.fileterorder span {
+  font-size: 16px;
+  margin-bottom: 15px;
+  display: block;
+  color: #393939;
+}
+
+.allfilterpopup {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.allfilterpopup input[type="radio"] {
+  display: none;
+}
+
+.allfilterpopup span {
+  width: 90px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  border: 1px solid #AFAFAF;
+  margin-bottom: 0px;
+  padding: 5px;
+  border-radius: 20px;
+  align-items: center;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+input[type="radio"]:checked + span {
+  background: #FFDD00;
+  color: #3A3A3A;
+  border: 1px solid #E6C800;
+}
+
+.appleyandcancle {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.appleyandcancle span {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.appleyandcancle span.canclepop {
+  color: #B6B6B6;
+  border: 1px solid #B6B6B6;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 5px;
+}
+
+.appleyandcancle span.applepop {
+  color: #353535;
+  border: 1px solid #B6B6B6;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 5px;
+  background: #FFDD00;
+}
+
+/* ==============================================
+   Logout Popup Styles
+   ============================================== */
+
+.logout-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.popup-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.popup-content {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.popup-content h3 {
+  margin: 0 0 15px 0;
+  font-size: 20px;
+  color: #212121;
+}
+
+.popup-content p {
+  margin: 0 0 25px 0;
+  color: #666;
+  font-size: 16px;
+}
+
+.popup-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.btn-cancel,
+.btn-confirm {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-cancel {
+  background: #f5f5f5;
+  color: #666;
+}
+
+.btn-cancel:hover {
+  background: #e0e0e0;
+}
+
+.btn-confirm {
+  background: #dc3545;
+  color: white;
+}
+
+.btn-confirm:hover {
+  background: #c82333;
 }
 
 /* ==============================================
@@ -1146,6 +1359,19 @@ body.mobile-menu-open {
 }
 
 /* ==============================================
+   Write Review Styles
+   ============================================== */
+
+.write-review-main {
+  display: flex;
+}
+
+.write-review-popup {
+  display: flex;
+  gap: 2px;
+}
+
+/* ==============================================
    Responsive Breakpoints
    ============================================== */
 
@@ -1155,10 +1381,8 @@ body.mobile-menu-open {
   }
   
   .orderinfo .pimg {
-    width: 75px;
-    min-width: 75px;
-    max-width: 75px;
-    height: 95px;
+    width: 35%;
+    min-height: 120px;
   }
   
   .orderinfo .pdetails .pname {
@@ -1176,7 +1400,7 @@ body.mobile-menu-open {
     min-width: 30px;
   }
   
-  .icon-item svg {
+  .icon-item img {
     width: 16px;
     height: 16px;
   }
@@ -1245,10 +1469,8 @@ body.mobile-menu-open {
   }
   
   .orderinfo .pimg {
-    width: 120px;
-    min-width: 120px;
-    max-width: 120px;
-    height: 140px;
+    width: 35%;
+    min-height: 160px;
   }
   
   .icon-item {
@@ -1257,7 +1479,7 @@ body.mobile-menu-open {
     min-width: 40px;
   }
   
-  .icon-item svg {
+  .icon-item img {
     width: 24px;
     height: 24px;
   }
@@ -1277,10 +1499,8 @@ body.mobile-menu-open {
   }
   
   .orderinfo .pimg {
-    width: 140px;
-    min-width: 140px;
-    max-width: 140px;
-    height: 160px;
+    width: 35%;
+    min-height: 180px;
   }
 }
 
@@ -1333,6 +1553,7 @@ input:focus {
 /* Print styles */
 @media print {
   .button-bottom-fixed,
+  .help-button-container,
   .mobile-menu-toggle,
   .edit-profile {
     display: none !important;
@@ -1351,55 +1572,82 @@ input:focus {
 }
 
 /* ==============================================
-   Order Actions & Buttons
+   Additional Inline Styles Support
    ============================================== */
 
-.order-user-list {
-  margin-top: 15px;
+/* These were inline style tags. Uses id+class to override almost everything */
+#style-LJt4L.style-LJt4L {
   display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
+  gap: 20px;
+  padding: 10px 25px 15px 25px;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.order-user-list a {
-  padding: 10px 20px;
-  border-radius: var(--border-radius-small);
+#style-qxoP2.style-qxoP2 {
+  margin-top: 0px;
+}
+
+#style-NZOEt.style-NZOEt {
+  background: transparent;
+  border: 1px solid rgba(39, 146, 245, 0.8);
+  color: rgba(39, 146, 245, 0.8);
+  text-transform: capitalize;
+}
+
+#style-EHx2a.style-EHx2a {
+  background: linear-gradient(90deg, rgba(255, 221, 0, 0.54) 0%, rgba(173, 173, 173, 0.54) 100%);
+  position: relative;
+}
+
+#style-9b4KT.style-9b4KT {
+  position: relative;
+}
+
+#style-27437.style-27437 {
+  color: rgba(175, 175, 175, 1);
+  padding: 5px 0 0;
+}
+
+#style-24P7T.style-24P7T {
+  color: rgba(175, 175, 175, 1);
+  padding: 5px 0 0;
+}
+
+#style-Mm4bx.style-Mm4bx {
+  color: rgba(175, 175, 175, 1);
+  padding: 5px 0 0;
+}
+
+#style-y6adL.style-y6adL {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#style-1jpRs.style-1jpRs {
+  color: rgba(0, 153, 34, 1);
+  font-size: 13px;
+}
+
+#style-sJvaa.style-sJvaa {
+  text-decoration-line: line-through;
+  color: rgba(0, 0, 0, 0.5);
+  margin-right: 2px;
+}
+
+.style-Kqo1G {
   font-size: 14px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.order-user-list a.view {
-  background: var(--primary-color);
-  color: var(--text-white);
-  box-shadow: var(--shadow-light);
-}
-
-.order-user-list a.view:hover {
-  background: var(--primary-dark);
-  transform: translateY(-2px);
-}
-
-.order-user-list a.cancel {
-  background: var(--bg-light);
-  color: var(--error-color);
-  border: 2px solid var(--error-color);
-}
-
-.order-user-list a.cancel:hover {
-  background: var(--error-color);
-  color: var(--text-white);
-}
-
-.cancel-timer {
-  font-size: 12px;
-  color: var(--text-white);
-  margin-left: 10px;
-  font-style: italic;
-  background: var(--warning-color);
-  padding: 2px 8px;
-  border-radius: 12px;
+  color: #212121cd;
   font-weight: 500;
+  line-height: 1.4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.style-tazxN {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
