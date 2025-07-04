@@ -54,214 +54,112 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Logout Confirmation
     const initLogoutPopup = () => {
-        const logoutLink = document.querySelector('a[href*="customer-logout"]');
-        if (!logoutLink) return;
+        const logoutLinks = document.querySelectorAll('a[data-logout="true"], a[href*="customer-logout"]');
         
-        logoutLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const popup = document.getElementById('logoutPopup');
-            if (popup) {
-                popup.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-                
-                const confirmBtn = document.getElementById('confirmLogout');
-                const cancelBtn = document.getElementById('cancelLogout');
-                
-                if (confirmBtn) {
-                    confirmBtn.addEventListener('click', function() {
-                        window.location.href = logoutLink.href;
-                    });
-                }
-                
-                if (cancelBtn) {
-                    cancelBtn.addEventListener('click', function() {
-                        popup.style.display = 'none';
-                        document.body.style.overflow = '';
-                    });
-                }
-                
-                popup.addEventListener('click', function(e) {
-                    if (e.target === popup) {
-                        popup.style.display = 'none';
-                        document.body.style.overflow = '';
-                    }
-                });
-            }
-        });
-    };
-
-    // Order Filter Popup
-    const initFilterPopup = () => {
-        const filterButton = document.querySelector('.filter-button');
-        if (!filterButton) return;
-        
-        filterButton.addEventListener('click', function() {
-            const popup = document.getElementById('orderFilterPopup');
-            if (popup) {
-                popup.style.display = 'block';
-                document.body.style.overflow = 'hidden';
-                
-                const cancelBtn = document.getElementById('cancelFilter');
-                const applyBtn = document.getElementById('applyFilter');
-                
-                if (cancelBtn) {
-                    cancelBtn.addEventListener('click', function() {
-                        popup.style.display = 'none';
-                        document.body.style.overflow = '';
-                    });
-                }
-                
-                if (applyBtn) {
-                    applyBtn.addEventListener('click', function() {
-                        const selectedStatus = document.querySelector('input[name="order_status"]:checked');
-                        popup.style.display = 'none';
-                        document.body.style.overflow = '';
-                        
-                        // Show loading state
-                        filterButton.innerHTML = `
-                            <span class="loading-spinner"></span>
-                            ${filterButton.textContent.trim()}
-                        `;
-                        filterButton.disabled = true;
-                        
-                        if (selectedStatus && selectedStatus.value !== 'all') {
-                            window.location.href = window.location.pathname + '?order_status=' + encodeURIComponent(selectedStatus.value);
-                        } else {
-                            window.location.href = window.location.pathname;
-                        }
-                    });
-                }
-                
-                popup.addEventListener('click', function(e) {
-                    if (e.target === popup) {
-                        popup.style.display = 'none';
-                        document.body.style.overflow = '';
-                    }
-                });
-            }
-        });
-    };
-
-    // Order Cancellation with 5-day timer - Fixed order ID detection
-    const initOrderCancellation = () => {
-        const cancelButtons = document.querySelectorAll('.cancel-order, a.cancel, a[href*="cancel_order"]');
-        
-        cancelButtons.forEach(button => {
-            button.addEventListener('click', function(e) {
+        logoutLinks.forEach(logoutLink => {
+            logoutLink.addEventListener('click', function(e) {
                 e.preventDefault();
                 
-                // Try multiple ways to get order ID
-                let orderId = this.dataset.orderId || 
-                             this.getAttribute('data-order-id') ||
-                             this.getAttribute('data-order') ||
-                             this.href.match(/order_id=(\d+)/)?.[1] ||
-                             this.href.match(/order=([^&]+)/)?.[1];
-                
-                const nonce = this.dataset.nonce || 
-                             this.getAttribute('data-nonce') ||
-                             this.href.match(/_wpnonce=([^&]+)/)?.[1];
-                
-                if (!orderId) {
-                    // Try to find order ID from parent elements
-                    const orderSection = this.closest('.order-product-section, .ordermainbox');
-                    if (orderSection) {
-                        const orderIdElement = orderSection.querySelector('.orderidmain, [class*="order"]');
-                        if (orderIdElement) {
-                            const orderIdText = orderIdElement.textContent;
-                            orderId = orderIdText.match(/#?(\d+)/)?.[1];
+                const popup = document.getElementById('logoutPopup');
+                if (popup) {
+                    popup.style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                    
+                    const confirmBtn = document.getElementById('confirmLogout');
+                    const cancelBtn = document.getElementById('cancelLogout');
+                    
+                    // Remove existing event listeners
+                    const newConfirmBtn = confirmBtn.cloneNode(true);
+                    const newCancelBtn = cancelBtn.cloneNode(true);
+                    confirmBtn.parentNode.replaceChild(newConfirmBtn, confirmBtn);
+                    cancelBtn.parentNode.replaceChild(newCancelBtn, cancelBtn);
+                    
+                    newConfirmBtn.addEventListener('click', function() {
+                        window.location.href = logoutLink.href;
+                    });
+                    
+                    newCancelBtn.addEventListener('click', function() {
+                        popup.style.display = 'none';
+                        document.body.style.overflow = '';
+                    });
+                    
+                    popup.addEventListener('click', function(e) {
+                        if (e.target === popup) {
+                            popup.style.display = 'none';
+                            document.body.style.overflow = '';
                         }
-                    }
-                }
-
-                if (!orderId) {
-                    alert('Order ID not found. Please try again or contact support.');
-                    return;
-                }
-
-                if (confirm('Are you sure you want to cancel this order?')) {
-                    // Show loading state
-                    const originalHTML = this.innerHTML;
-                    this.innerHTML = '<span class="loading-spinner"></span> Processing...';
-                    this.style.pointerEvents = 'none';
-
-                    // Check if ajaxurl is available (WordPress AJAX)
-                    const ajaxUrl = typeof ajaxurl !== 'undefined' ? ajaxurl : '/wp-admin/admin-ajax.php';
-
-                    fetch(ajaxUrl, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                        },
-                        body: new URLSearchParams({
-                            action: 'cancel_order',
-                            order_id: orderId,
-                            security: nonce || ''
-                        })
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            // Update UI
-                            const parentSection = this.closest('.order-product-section, .ordermainbox');
-                            if (parentSection) {
-                                // Update status
-                                const statusElement = parentSection.querySelector('.order-status, .statusmain, .p-status');
-                                if (statusElement) {
-                                    statusElement.textContent = 'Cancelled';
-                                    statusElement.className = 'order-status status-cancelled';
-                                }
-                                
-                                // Remove cancel elements
-                                this.remove();
-                                const timer = parentSection.querySelector('.cancel-timer');
-                                if (timer) timer.remove();
-                            }
-                            
-                            alert(data.data?.message || 'Order cancelled successfully');
-                        } else {
-                            throw new Error(data.data?.message || 'Cancellation failed');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        alert(error.message || 'Error cancelling order');
-                        this.innerHTML = originalHTML;
-                        this.style.pointerEvents = 'auto';
                     });
                 }
             });
         });
     };
 
-    // Initialize cancel timers (5 days from order date)
-    const initCancelTimers = () => {
-        const orderSections = document.querySelectorAll('.order-product-section, .ordermainbox');
+    // Order Filter Popup
+    const initFilterPopup = () => {
+        const filterButton = document.querySelector('.filter-button');
+        const popup = document.getElementById('orderFilterPopup');
         
-        orderSections.forEach(section => {
-            const orderDateElement = section.querySelector('.order-date');
-            const cancelButton = section.querySelector('.cancel-order, a.cancel, a[href*="cancel_order"]');
-            
-            if (orderDateElement && cancelButton) {
-                const orderDateText = orderDateElement.textContent.trim();
-                const orderDate = new Date(orderDateText);
-                const currentDate = new Date();
-                const daysDiff = Math.floor((currentDate - orderDate) / (1000 * 60 * 60 * 24));
-                const remainingDays = 5 - daysDiff;
+        if (!filterButton || !popup) return;
+        
+        filterButton.addEventListener('click', function() {
+            popup.style.display = 'block';
+            popup.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        const cancelBtn = document.getElementById('cancelFilter');
+        const applyBtn = document.getElementById('applyFilter');
+        
+        if (cancelBtn) {
+            cancelBtn.addEventListener('click', function() {
+                popup.style.display = 'none';
+                popup.classList.remove('show');
+                document.body.style.overflow = '';
+            });
+        }
+        
+        if (applyBtn) {
+            applyBtn.addEventListener('click', function() {
+                const selectedStatus = document.querySelector('input[name="status"]:checked');
+                const selectedTime = document.querySelector('input[name="time"]:checked');
                 
-                if (remainingDays > 0) {
-                    // Add timer display
-                    let timerElement = section.querySelector('.cancel-timer');
-                    if (!timerElement) {
-                        timerElement = document.createElement('span');
-                        timerElement.className = 'cancel-timer';
-                        cancelButton.parentNode.appendChild(timerElement);
-                    }
-                    timerElement.textContent = `(${remainingDays} days left to cancel)`;
-                } else {
-                    // Remove cancel button if 5 days have passed
-                    cancelButton.remove();
+                popup.style.display = 'none';
+                popup.classList.remove('show');
+                document.body.style.overflow = '';
+                
+                // Show loading state
+                filterButton.innerHTML = `
+                    <span class="loading-spinner"></span>
+                    Filter
+                `;
+                filterButton.disabled = true;
+                
+                // Build filter URL
+                let filterUrl = window.location.pathname;
+                const params = new URLSearchParams();
+                
+                if (selectedStatus && selectedStatus.value !== '0') {
+                    params.append('order_status', selectedStatus.value);
                 }
+                
+                if (selectedTime && selectedTime.value !== '1') {
+                    params.append('order_time', selectedTime.value);
+                }
+                
+                if (params.toString()) {
+                    filterUrl += '?' + params.toString();
+                }
+                
+                window.location.href = filterUrl;
+            });
+        }
+        
+        // Close popup when clicking overlay
+        popup.addEventListener('click', function(e) {
+            if (e.target === popup || e.target.classList.contains('fixed')) {
+                popup.style.display = 'none';
+                popup.classList.remove('show');
+                document.body.style.overflow = '';
             }
         });
     };
@@ -311,11 +209,80 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     };
 
+    // Copy order ID functionality
+    const initCopyOrderId = () => {
+        const copyButtons = document.querySelectorAll('.ordernumber img');
+        
+        copyButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const orderIdElement = this.previousElementSibling;
+                if (orderIdElement) {
+                    const orderIdText = orderIdElement.textContent;
+                    const orderId = orderIdText.replace('Order ID. #', '');
+                    
+                    // Copy to clipboard
+                    if (navigator.clipboard) {
+                        navigator.clipboard.writeText(orderId).then(() => {
+                            showToast('Order ID copied to clipboard!');
+                        });
+                    } else {
+                        // Fallback for older browsers
+                        const textArea = document.createElement('textarea');
+                        textArea.value = orderId;
+                        document.body.appendChild(textArea);
+                        textArea.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(textArea);
+                        showToast('Order ID copied to clipboard!');
+                    }
+                }
+            });
+        });
+    };
+
+    // Show toast notification
+    const showToast = (message) => {
+        const toast = document.createElement('div');
+        toast.className = 'toast-notification';
+        toast.textContent = message;
+        toast.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+            z-index: 10000;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        `;
+        
+        document.body.appendChild(toast);
+        
+        // Animate in
+        setTimeout(() => {
+            toast.style.transform = 'translateX(0)';
+        }, 100);
+        
+        // Remove after 3 seconds
+        setTimeout(() => {
+            toast.style.transform = 'translateX(100%)';
+            setTimeout(() => {
+                if (toast.parentNode) {
+                    toast.parentNode.removeChild(toast);
+                }
+            }, 300);
+        }, 3000);
+    };
+
     // Initialize all functionality
     initMobileMenu();
     initLogoutPopup();
     initFilterPopup();
-    initOrderCancellation();
-    initCancelTimers();
     initOrderTracking();
+    initCopyOrderId();
 });
