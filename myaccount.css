@@ -68,11 +68,11 @@ html {
   width: 100%;
 }
 
-/* Hide default WooCommerce content */
-.woocommerce-MyAccount-content,
-.woocommerce-account .woocommerce h2,
-.woocommerce-account .entry-header,
-.woocommerce-account .entry-title {
+/* Hide default WooCommerce content only for dashboard */
+.woocommerce-MyAccount-content:not(.woocommerce-account-content),
+.woocommerce-account .woocommerce h2:not(.woocommerce-account-content h2),
+.woocommerce-account .entry-header:not(.woocommerce-account-content .entry-header),
+.woocommerce-account .entry-title:not(.woocommerce-account-content .entry-title) {
   display: none !important;
 }
 
@@ -365,6 +365,125 @@ img {
 /* Prevent body scroll when menu is open */
 body.mobile-menu-open {
   overflow: hidden;
+}
+
+/* ==============================================
+   WooCommerce Content Wrapper
+   ============================================== */
+
+.woocommerce-content-wrapper {
+  background: var(--bg-white);
+  min-height: 100vh;
+  width: 100%;
+}
+
+.woocommerce-account-content {
+  padding: 20px;
+  background: var(--bg-white);
+}
+
+/* Style WooCommerce forms */
+.woocommerce-account-content .woocommerce-form,
+.woocommerce-account-content .woocommerce-address-fields,
+.woocommerce-account-content .woocommerce-EditAccountForm {
+  background: var(--bg-white);
+  padding: 20px;
+  border-radius: var(--border-radius-small);
+  box-shadow: var(--shadow-light);
+  margin-bottom: 20px;
+}
+
+.woocommerce-account-content .form-row {
+  margin-bottom: 20px;
+}
+
+.woocommerce-account-content label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.woocommerce-account-content input[type="text"],
+.woocommerce-account-content input[type="email"],
+.woocommerce-account-content input[type="password"],
+.woocommerce-account-content input[type="tel"],
+.woocommerce-account-content select,
+.woocommerce-account-content textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-small);
+  font-size: 14px;
+  font-family: var(--font-global);
+  transition: border-color 0.3s ease;
+}
+
+.woocommerce-account-content input:focus,
+.woocommerce-account-content select:focus,
+.woocommerce-account-content textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.woocommerce-account-content .button,
+.woocommerce-account-content button {
+  background: var(--primary-color);
+  color: var(--text-white);
+  padding: 12px 24px;
+  border: none;
+  border-radius: var(--border-radius-small);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.woocommerce-account-content .button:hover,
+.woocommerce-account-content button:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+/* Downloads page styling */
+.woocommerce-account-content .woocommerce-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.woocommerce-account-content .woocommerce-table th,
+.woocommerce-account-content .woocommerce-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.woocommerce-account-content .woocommerce-table th {
+  background: var(--bg-light);
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+/* Address page styling */
+.woocommerce-account-content .woocommerce-Addresses {
+  display: grid;
+  gap: 20px;
+}
+
+.woocommerce-account-content .woocommerce-Address {
+  background: var(--bg-light);
+  padding: 20px;
+  border-radius: var(--border-radius-small);
+  border: 1px solid var(--border-color);
+}
+
+.woocommerce-account-content .woocommerce-Address-title {
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-color);
 }
 
 /* ==============================================
@@ -1047,6 +1166,74 @@ body.mobile-menu-open {
 }
 
 /* ==============================================
+   Avatar Upload Section
+   ============================================== */
+
+.avatar-upload-section {
+  position: relative;
+  display: inline-block;
+}
+
+.avatar-upload-input {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.avatar-upload-overlay {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: var(--primary-color);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 3;
+  border: 2px solid white;
+}
+
+.avatar-upload-overlay svg {
+  width: 12px;
+  height: 12px;
+  fill: white;
+}
+
+/* Default avatar with better styling */
+.default-avatar {
+  width: 80px;
+  height: 80px;
+  margin: auto;
+  border: 2px solid #ddd;
+  padding: 0;
+  font-size: 32px;
+  text-transform: uppercase;
+  border-radius: 50%;
+  text-align: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.user-avatar-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ddd;
+}
+
+/* ==============================================
    Sticky Help Button - Fixed Color
    ============================================== */
 
@@ -1061,6 +1248,15 @@ body.mobile-menu-open {
   background: #fff;
   box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
 }
+
+/* On desktop: remove fixed positioning */
+@media screen and (min-width: 768px) {
+  .button-bottom-fixed,
+  .help-button-container {
+    position: static; /* Or remove it if it's not needed */
+  }
+}
+
 
 .button-bottom-fixed a,
 .help-button-container a,
@@ -1379,74 +1575,6 @@ input[type="radio"]:checked + span {
 }
 
 /* ==============================================
-   Avatar Upload Section
-   ============================================== */
-
-.avatar-upload-section {
-  position: relative;
-  display: inline-block;
-}
-
-.avatar-upload-input {
-  position: absolute;
-  opacity: 0;
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-  z-index: 2;
-}
-
-.avatar-upload-overlay {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  background: var(--primary-color);
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 3;
-  border: 2px solid white;
-}
-
-.avatar-upload-overlay svg {
-  width: 12px;
-  height: 12px;
-  fill: white;
-}
-
-/* Default avatar with better styling */
-.default-avatar {
-  width: 80px;
-  height: 80px;
-  margin: auto;
-  border: 2px solid #ddd;
-  padding: 0;
-  font-size: 32px;
-  text-transform: uppercase;
-  border-radius: 50%;
-  text-align: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  letter-spacing: 1px;
-}
-
-.user-avatar-img {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid #ddd;
-}
-
-/* ==============================================
    Responsive Breakpoints
    ============================================== */
 
@@ -1527,7 +1655,7 @@ input[type="radio"]:checked + span {
   }
 
   .userprofileleft,
-  .myaccountnavigationtab {
+  .leftside-my-account .myaccountnavigationtab {
     display: block;
   }
 
