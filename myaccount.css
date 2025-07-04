@@ -1,0 +1,1682 @@
+
+/* ==============================================
+   Base Styles & Reset
+   ============================================== */
+
+
+
+/* Base font and colors */
+:root {
+  --primary-color: #FFDD00;
+  --text-color: #212121;
+  --text-light: #717171;
+  --border-color: #E8E8E8;
+  --bg-light: #F5F5F5;
+  --success-color: #009B19;
+  --warning-color: #D97706;
+  --error-color: #DC3545;
+  --font-main: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+}
+
+/* Reset and Base Styles */
+.order-desktop {
+    background: rgba(236, 236, 236, 1);
+    padding: 10px 0 60px;
+    min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+  width: 100%;
+}
+
+/* Hide default WooCommerce content */
+.woocommerce-MyAccount-content,
+.woocommerce-account .woocommerce h2,
+.woocommerce-account .entry-header,
+.woocommerce-account .entry-title
+{
+    display: none !important;
+}
+
+.account-nav.account-user {
+  display: none;
+}
+
+/* Remove default list styles */
+ul, ol {
+  list-style: none;
+}
+
+/* Link styles */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Image responsiveness */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+
+/* ==============================================
+   My Account Layout - Mobile First
+   ============================================== */
+
+.my-account {
+  padding: 10px 0 0px;
+  min-height: 100vh;
+}
+
+/* Main account wrapper */
+.myaccount-order {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Left sidebar - mobile collapsed */
+.leftside-my-account {
+  width: 100%;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Mobile menu toggle button */
+.mobile-menu-toggle {
+  display: flex;
+  width: 100%;
+  padding: 15px;
+  background: var(--primary-color);
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.mobile-menu-toggle svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+/* User profile section - hidden by default on mobile */
+.userprofileleft {
+  display: none;
+  text-align: center;
+  padding: 30px 20px;
+  position: relative;
+  border-bottom: 1px solid var(--bg-light);
+}
+
+/* Show when mobile menu is open */
+.mobile-menu-open .userprofileleft {
+  display: block;
+}
+
+/* Edit profile button */
+.edit-profile {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+  background: var(--bg-light);
+}
+
+.userprofileleft img {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  margin: 0 auto;
+}
+
+.profileinfo h2 {
+  margin: 15px 0 8px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.profileinfo .info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 5px;
+  flex-wrap: wrap;
+}
+
+.profileinfo .info p {
+  margin: 0;
+  color: var(--text-light);
+  font-size: 14px;
+}
+
+/* Navigation menu - hidden by default on mobile */
+.myaccountnavigationtab {
+  display: none;
+  margin-top: 20px;
+}
+
+/* Show when mobile menu is open */
+.mobile-menu-open .myaccountnavigationtab {
+  display: block;
+}
+
+.myaccountnavigationtab ul {
+  padding: 0 20px;
+}
+
+.myaccountnavigationtab li {
+  margin-bottom: 15px;
+}
+
+.myaccountnavigationtab a {
+  display: block;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.myaccountnavigationtab a:hover,
+.myaccountnavigationtab a.is-active {
+  background: var(--primary-color);
+}
+
+.tabmain {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.svgtext {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.svgtext svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.tab-text-myaccount strong {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+/* Right content area */
+/* Main rightside styles */
+.rightside-my-account {
+  width: 100%;
+  background: #fff;
+  border-radius: 10px;
+}
+
+ .ordermainbox {
+    padding: 16px 15px; /* Adjust padding to match the container */
+  }
+  
+  
+  
+/* Section headings */
+.top-strip-order {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.top-strip-order h3 {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.filter-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--primary-color);
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.filter-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Orders list */
+.my-order-order-mobile {
+  margin-top: 20px;
+}
+
+.order-product-section {
+  padding: 16px 0 0;
+}
+
+.order-product-section ~ .order-product-section {
+  border-top: 1px solid rgba(205, 205, 205, 0.3);
+  margin-top: 12px;
+}
+
+.orderboxtop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(205, 205, 205, 0.3);
+}
+
+.order-date {
+  font-size: 12px;
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+.orderidmain {
+  color: var(--warning-color);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.order-content {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.pimg {
+  width: 100%;
+  aspect-ratio: 3/4;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--bg-light);
+}
+
+.pimg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pdetails {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.order-product-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+.order-product-details p {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.order-user-list {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.order-user-list a {
+  padding: 8px 15px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.order-user-list a.view {
+  background: var(--primary-color);
+}
+
+.order-user-list a.cancel {
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+}
+
+.cancel-timer {
+  font-size: 12px;
+  color: var(--text-light);
+  margin-left: 10px;
+}
+
+
+
+
+
+
+
+/* ==============================================
+   Desktop Layout Adjustments
+   ============================================== */
+
+@media (min-width: 768px) {
+  .myaccount-order {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  /* Left sidebar - always visible on desktop */
+  .leftside-my-account {
+    width: 320px;
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+  }
+
+  .mobile-menu-toggle {
+    display: none;
+  }
+
+  .userprofileleft,
+  .myaccountnavigationtab {
+    display: block;
+  }
+
+  /* Right content area */
+  .rightside-my-account {
+    flex: 1;
+    min-width: 0; /* Prevent flex overflow */
+  }
+
+
+
+  .order-product-details {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+
+
+
+@media (min-width: 1024px) {
+  .leftside-my-account {
+    width: 360px;
+  }
+}
+
+/* ==============================================
+   Order Details Page Styles
+   ============================================== */
+
+/* ==============================================
+   Order Details Page - Complete CSS
+   ============================================== */
+
+/* Main container styles */
+.orderinfomain {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* Header strip */
+.top-strip {
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: center;
+}
+
+.top-strip p {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  color: var(--text-color);
+}
+
+/* Order info container */
+.orderinfo-box {
+  padding: 16px;
+}
+
+/* Product info container */
+.orderinfo {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Product image container */
+.pimg {
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto;
+  position: relative;
+  background: rgba(231, 231, 231, 1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.imagemain {
+  position: relative;
+  width: 100%;
+  padding-top: 133.33%; /* 4:3 aspect ratio */
+}
+
+.imagemain img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Status badge */
+.orderstatusimg {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  padding: 4px 8px;
+  background: rgba(0, 133, 255, 0.8);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 4px;
+  z-index: 2;
+}
+
+/* Order number display */
+.ordernumber {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 8px;
+  font-size: 12px;
+}
+
+.ordernumber span {
+  font-weight: 600;
+  color: var(--text-color);
+  white-space: nowrap;
+}
+
+/* Product details section */
+.pdetails {
+  width: 100%;
+}
+
+.pname {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.productcategoryname {
+  color: var(--text-light);
+  font-size: 14px;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.order-product-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text-light);
+  margin-bottom: 12px;
+}
+
+.order-product-details p {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.qty {
+  font-size: 14px;
+  color: var(--text-light);
+  margin-bottom: 12px;
+}
+
+.pprice {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--success-color);
+  margin-bottom: 12px;
+}
+
+.orderlocationstatus {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 16px;
+}
+
+.statusmain {
+  background: rgba(39, 146, 245, 0.8);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
+/* ==============================================
+   Order Tracking Section
+   ============================================== */
+
+.productlivelocation {
+  margin: 30px 0;
+  padding: 0 16px;
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  padding: 0 20px;
+  margin-bottom: 15px;
+}
+
+.icon-item {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 2px solid var(--border-color);
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.icon-item svg {
+  width: 24px;
+  height: 24px;
+}
+
+.icon-item.active {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--border-color);
+  transform: translateY(-50%);
+  transition: all 0.3s ease;
+}
+
+.line.active {
+  background: var(--primary-color);
+}
+
+.itemstatusmain {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.p-status {
+  font-size: 12px;
+  color: var(--text-light);
+  transition: all 0.3s ease;
+}
+
+.p-status.active {
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.trackid {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 14px;
+  padding: 8px;
+  background: var(--bg-light);
+  border-radius: 4px;
+}
+
+.trackingidheading {
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+/* ==============================================
+   Shipping Address Section
+   ============================================== */
+
+.shippingaddress {
+  margin: 30px 0;
+  padding: 0 16px;
+}
+
+.shippingmain {
+  background: var(--bg-light);
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.headingshipping {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 12px;
+}
+
+.shippinmgaddress {
+  font-size: 14px;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+.shippinmgaddress p {
+  margin: 0 0 8px 0;
+}
+
+/* ==============================================
+   Updates Section
+   ============================================== */
+
+.updatesend-to {
+  padding: 16px;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  margin: 0 16px;
+}
+
+.upheading {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 10px;
+}
+
+.updatesend-to div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.updatesend-to span {
+  font-size: 14px;
+  color: var(--text-light);
+}
+
+/* ==============================================
+   Price Details Section
+   ============================================== */
+
+.price-section-account {
+  padding: 0 16px;
+  margin-bottom: 30px;
+}
+
+.total-items {
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.items-heading {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.price-section {
+  padding: 15px 0;
+}
+
+.mrp-text {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: var(--text-light);
+}
+
+.total-amount {
+  padding: 15px 0;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.total-amount .inner {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--text-color);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 480px) {
+  .icon-container {
+    padding: 0 10px;
+  }
+  
+  .icon-item {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .icon-item svg {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .p-status {
+    font-size: 11px;
+  }
+  
+  .shippingmain,
+  .updatesend-to {
+    padding: 12px;
+  }
+}
+
+
+
+/* ==============================================
+   Additional Components & Enhancements
+   ============================================== */
+
+/* Action Buttons */
+.order-actions {
+  display: flex;
+  gap: 12px;
+  padding: 0 16px;
+  margin: 20px 0 30px;
+}
+
+.order-actions .button {
+  flex: 1;
+  text-align: center;
+  padding: 12px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.order-actions .primary-button {
+  background: var(--primary-color);
+  color: var(--text-color);
+  border: none;
+}
+
+.order-actions .secondary-button {
+  background: #fff;
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+/* Loading States */
+.loading-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.loading-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(0,0,0,0.1);
+  border-radius: 50%;
+  border-top: 3px solid var(--primary-color);
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Status Badges */
+.status-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status-processing {
+  background-color: rgba(255, 221, 0, 0.1);
+  color: #D97706;
+  border: 1px solid rgba(255, 221, 0, 0.3);
+}
+
+.status-completed {
+  background-color: rgba(0, 155, 25, 0.1);
+  color: var(--success-color);
+  border: 1px solid rgba(0, 155, 25, 0.3);
+}
+
+.status-cancelled {
+  background-color: rgba(220, 53, 69, 0.1);
+  color: var(--error-color);
+  border: 1px solid rgba(220, 53, 69, 0.3);
+}
+
+/* Empty State */
+.empty-order-state {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.empty-order-state svg {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 20px;
+  opacity: 0.5;
+}
+
+.empty-order-state h3 {
+  font-size: 18px;
+  color: var(--text-color);
+  margin-bottom: 10px;
+}
+
+.empty-order-state p {
+  color: var(--text-light);
+  margin-bottom: 20px;
+}
+
+/* Help Section */
+.help-section {
+  background: var(--bg-light);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 0 16px 30px;
+}
+
+.help-section h3 {
+  font-size: 16px;
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.help-contact {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.help-contact svg {
+  flex-shrink: 0;
+}
+
+/* Print Styles */
+@media print {
+  .button-bottom-fixed,
+  .order-actions,
+  .mobile-menu-toggle {
+    display: none !important;
+  }
+  
+  body {
+    background: none;
+    padding: 0;
+    font-size: 12px;
+  }
+  
+  .orderinfomain {
+    box-shadow: none;
+    border: none;
+  }
+  
+  .pimg {
+    max-width: 120px !important;
+  }
+}
+
+/* Animation Enhancements */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.orderinfo {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Micro-interactions */
+.button:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+/* Accessibility Focus Styles */
+a:focus, 
+button:focus,
+input:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: more) {
+  :root {
+    --text-color: #000;
+    --text-light: #333;
+    --border-color: #000;
+  }
+  
+  .icon-item {
+    border-width: 3px;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-color: #f0f0f0;
+    --text-light: #b0b0b0;
+    --border-color: #444;
+    --bg-light: #2a2a2a;
+  }
+  
+  .orderinfomain {
+    background: #1e1e1e;
+  }
+  
+  .shippingmain,
+  .trackid {
+    background: #333;
+  }
+  
+  .imagemain {
+    background: #333;
+  }
+}
+
+
+
+
+/* ==============================================
+   Form Styles (Edit Account/Address)
+   ============================================== */
+
+.edit-account-form,
+.edit-address-form {
+  padding: 20px;
+}
+
+.edit-account-form h2,
+.edit-address-form h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.woocommerce-EditAccountForm,
+.woocommerce-address-fields {
+  display: grid;
+  gap: 20px;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-row label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.form-row input,
+.form-row select,
+.form-row textarea {
+  padding: 12px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 14px;
+  width: 100%;
+}
+
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+fieldset legend {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  padding: 0;
+}
+
+/* Form buttons */
+button[type="submit"],
+button[name="save_address"] {
+  background: var(--primary-color);
+  color: var(--text-color);
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+button[type="submit"]:hover,
+button[name="save_address"]:hover {
+  opacity: 0.9;
+}
+
+
+/* Cancel Order Modal */
+#cancelOrderModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+#cancelOrderModal .modal-content {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    width: 90%;
+    max-width: 400px;
+}
+
+#cancelOrderModal h3 {
+    margin-top: 0;
+    font-size: 18px;
+}
+
+#cancelOrderModal .modal-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+#cancelOrderModal .modal-actions button {
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+#confirmCancel {
+    background: #FFDD00;
+    border: none;
+}
+
+#cancelModal {
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+}
+
+/* ==============================================
+   Modal & Popup Styles
+   ============================================== */
+
+/* Base modal overlay */
+.modal,
+.popup-overlay,
+.logout-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.modal.active,
+.popup-overlay.active,
+.logout-popup.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Modal content container */
+.modal-content,
+.popupmain,
+.cartremovemain {
+  background: #fff;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+.modal.active .modal-content,
+.popup-overlay.active .popupmain,
+.logout-popup.active .cartremovemain {
+  transform: translateY(0);
+}
+
+/* Modal header */
+.modal-content h3 {
+  padding: 20px;
+  font-size: 18px;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Modal body text */
+.modal-content p {
+  padding: 20px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* Modal action buttons */
+.modal-actions,
+.appleyandcancle {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  padding: 15px 20px;
+  border-top: 1px solid var(--border-color);
+}
+
+.modal-actions button,
+.appleyandcancle span {
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+/* Confirm/cancel buttons */
+#confirmCancel,
+.applepop {
+  background: var(--primary-color);
+  color: var(--text-color);
+  border: none;
+}
+
+#cancelModal,
+.canclepop {
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  color: var(--text-light);
+}
+
+/* Logout popup specific styles */
+.cartremovemain p {
+  text-align: center;
+  padding: 30px 20px;
+  font-size: 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.cartremovemain span {
+  display: block;
+  text-align: center;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Order filter popup styles */
+.popupmain-inner {
+  padding: 20px;
+}
+
+.poptopheading {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.productstatuspop {
+  margin: 30px 0;
+}
+
+.fileterorder span {
+  display: block;
+  margin-bottom: 15px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.allfilterpopup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.allfilterpopup label {
+  display: block;
+  cursor: pointer;
+}
+
+.allfilterpopup input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+}
+
+.allfilterpopup input[type="radio"] + span {
+  display: inline-block;
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  font-size: 14px;
+  transition: all 0.3s;
+}
+
+.allfilterpopup input[type="radio"]:checked + span {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+/* ==============================================
+   WhatsApp Help Button
+   ============================================== */
+
+.button-bottom-fixed {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 15px;
+  background: #fff;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+.button-bottom-fixed a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--primary-color);
+  color: var(--text-color);
+  padding: 15px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: capitalize;
+  transition: opacity 0.3s;
+}
+
+.button-bottom-fixed a:hover {
+  opacity: 0.9;
+}
+
+.button-bottom-fixed img {
+  width: 20px;
+  height: 20px;
+}
+
+/* ==============================================
+   Responsive Tweaks for Small Screens
+   ============================================== */
+
+/* ==============================================
+   Animations & Interaction States
+   ============================================== */
+
+/* Button hover states */
+button:not(:disabled):hover,
+a:not(:disabled):hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* Loading spinner for async actions */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(0,0,0,0.1);
+  border-radius: 50%;
+  border-top: 3px solid var(--text-color);
+  animation: spin 1s linear infinite;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+/* Active tab indicator */
+.myaccounttabs.is-active a {
+  background: var(--primary-color);
+  box-shadow: 0 2px 8px rgba(255, 221, 0, 0.3);
+}
+
+
+
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(0,0,0,0.1);
+    border-radius: 50%;
+    border-top: 3px solid var(--text-color);
+    animation: spin 1s linear infinite;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+
+
+
+/* ==============================================
+   Order Status Styles (Matching Beyoung.in)
+   ============================================== */
+
+/* Base status style */
+.order-status {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+  margin-left: 8px;
+}
+
+/* Processing status (yellow) */
+.order-status.status-processing,
+.order-status.status-processing-payment {
+  background-color: #FFDD00;
+  color: #3A3A3A;
+  border: 1px solid #E6C800;
+}
+
+/* Completed/Delivered status (green) */
+.order-status.status-completed,
+.order-status.status-delivered {
+  background-color: rgba(0, 155, 25, 0.1);
+  color: #009B19;
+  border: 1px solid rgba(0, 155, 25, 0.3);
+}
+
+/* In Transit status (blue) */
+.order-status.status-in-transit,
+.order-status.status-shipped {
+  background-color: rgba(0, 133, 255, 0.1);
+  color: #0085FF;
+  border: 1px solid rgba(0, 133, 255, 0.3);
+}
+
+/* RTO (Return to Origin) status (red) */
+.order-status.status-rto,
+.order-status.status-failed,
+.order-status.status-cancelled {
+  background-color: rgba(220, 53, 69, 0.1);
+  color: #DC3545;
+  border: 1px solid rgba(220, 53, 69, 0.3);
+}
+
+/* On Hold status (gray) */
+.order-status.status-on-hold {
+  background-color: rgba(108, 117, 125, 0.1);
+  color: #6C757D;
+  border: 1px solid rgba(108, 117, 125, 0.3);
+}
+
+/* Pending status (orange) */
+.order-status.status-pending {
+  background-color: rgba(253, 126, 20, 0.1);
+  color: #FD7E14;
+  border: 1px solid rgba(253, 126, 20, 0.3);
+}
+
+/* Status in order details page */
+.orderlocationstatus .statusmain {
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+/* Timeline status indicators */
+.icon-item.active {
+  background-color: currentColor;
+}
+
+.icon-item.active svg path {
+  fill: white;
+}
+
+/* Status-specific timeline colors */
+/* Processing */
+.status-processing .icon-item.active,
+.status-processing-payment .icon-item.active {
+  color: #FFDD00;
+}
+
+/* Shipped/In Transit */
+.status-in-transit .icon-item.active,
+.status-shipped .icon-item.active {
+  color: #0085FF;
+}
+
+/* Delivered */
+.status-delivered .icon-item.active,
+.status-completed .icon-item.active {
+  color: #009B19;
+}
+
+/* RTO/Failed */
+.status-rto .icon-item.active,
+.status-failed .icon-item.active {
+  color: #DC3545;
+}
+
+/* Active timeline line */
+.line.active {
+  background-color: currentColor;
+}
+
+/* ==============================================
+   Status Badge in Order List
+   ============================================== */
+.order-product-section .order-status {
+  margin: 8px 0 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Status icon */
+.order-status svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ==============================================
+   Full Width Mobile Adjustments
+   ============================================== */
+@media (max-width: 768px) {
+  /* Make all main containers full width */
+  .rightside-my-account,
+  .my-order-order-mobile,
+  .orderinfomain,
+  .orderinfo,
+  .edit-account-form,
+  .edit-address-form,
+  .woocommerce-EditAccountForm,
+  .woocommerce-address-fields {
+    margin-left: -15px;
+    margin-right: -15px;
+    width: calc(100% + 30px);
+    border-radius: 0;
+  }
+
+  /* Adjust inner padding for content */
+  .ordermainbox,
+  .orderinfo-box,
+  .edit-account-form,
+  .edit-address-form,
+  .woocommerce-EditAccountForm,
+  .woocommerce-address-fields {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+ 
+
+  /* Remove any max-width restrictions */
+
+  .imagemain {
+    max-width: 100%;
+  }
+
+  /* Full-width form elements */
+  .form-row input,
+  .form-row select,
+  .form-row textarea {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+/* Cancel button styles */
+.order-user-list a.cancel {
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    color: #333;
+    transition: all 0.3s;
+}
+
+.order-user-list a.cancel:hover {
+    background: #e0e0e0;
+    text-decoration: none;
+}
+
+.cancel-timer {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-left: 10px;
+}
+
+/* ==============================================
+   Print Styles
+   ============================================== */
+
+@media print {
+  .button-bottom-fixed,
+  .mobile-menu-toggle,
+  .edit-profile,
+  .order-user-list a.cancel {
+    display: none !important;
+  }
+
+  body {
+    background: none;
+    padding: 0;
+  }
+
+  .leftside-my-account,
+  .rightside-my-account {
+    box-shadow: none;
+    border: none;
+  }
+
+  .orderinfomain {
+    page-break-inside: avoid;
+  }
+}
+
+
+#nasa-footer,
+#cart-sidebar,
+#nasa-wishlist-sidebar,
+#nasa-quickview-sidebar,
+.cart-close, 
+.nasa-sidebar-close
+.nasa-bottom-bar,
+.nasa-transition {
+  display: none !important;
+}
