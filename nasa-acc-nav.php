@@ -34,6 +34,7 @@ $first_letter = strtoupper(substr($user_name, 0, 1));
 // Check if we're on orders page or order details page
 $is_orders_page = is_wc_endpoint_url('orders') || is_wc_endpoint_url('view-order');
 $is_order_details = is_wc_endpoint_url('view-order');
+$is_dashboard = !$is_orders_page && !is_wc_endpoint_url('edit-account') && !is_wc_endpoint_url('edit-address');
 
 // Get order details if on order details page
 $order = null;
@@ -53,7 +54,7 @@ if ($is_order_details) {
                 <button class="mobile-menu-toggle" aria-expanded="false">
                     <span>My Account</span>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M7 10l5 5 5-5z"/>
+                        <path d="M7 10l5 5 5-5z"></path>
                     </svg>
                 </button>
 
@@ -505,8 +506,8 @@ if ($is_order_details) {
                     </div>
                     
                 <?php else: ?>
-                    <!-- Default Account Dashboard -->
-                    <div class="myaccountmainmobile">
+                    <!-- Default Account Dashboard - Show the mobile dashboard layout -->
+                    <div class="myaccountmainmobile snipcss-J9kFJ">
                         <div class="myaccountmobile">
                             <div class="profile">
                                 <div class="edit-profile">
@@ -514,8 +515,8 @@ if ($is_order_details) {
                                         <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23666'%3E%3Cpath d='M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z'/%3E%3C/svg%3E" alt="Edit Profile">
                                     </a>
                                 </div>
-                                <div>
-                                    <p class="user-avatar"><?php echo esc_html($first_letter); ?></p>
+                                <div class="snipcss0-0-0-1">
+                                    <p><?php echo esc_html($first_letter); ?></p>
                                 </div>
                                 <div class="profileinfo">
                                     <h2><?php echo esc_html($user_name); ?></h2>
