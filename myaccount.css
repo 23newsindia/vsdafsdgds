@@ -961,6 +961,12 @@ body.mobile-menu-open {
   width: 100%;
 }
 
+.updatesend-to div img {
+  width: 16px !important;
+  height: 16px !important;
+  flex-shrink: 0;
+}
+
 .updatesend-to div span {
   font-size: 13px;
   font-weight: normal;
@@ -1372,6 +1378,74 @@ input[type="radio"]:checked + span {
 }
 
 /* ==============================================
+   Avatar Upload Section
+   ============================================== */
+
+.avatar-upload-section {
+  position: relative;
+  display: inline-block;
+}
+
+.avatar-upload-input {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.avatar-upload-overlay {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: var(--primary-color);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 3;
+  border: 2px solid white;
+}
+
+.avatar-upload-overlay svg {
+  width: 12px;
+  height: 12px;
+  fill: white;
+}
+
+/* Default avatar with better styling */
+.default-avatar {
+  width: 80px;
+  height: 80px;
+  margin: auto;
+  border: 2px solid #ddd;
+  padding: 0;
+  font-size: 32px;
+  text-transform: uppercase;
+  border-radius: 50%;
+  text-align: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.user-avatar-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ddd;
+}
+
+/* ==============================================
    Responsive Breakpoints
    ============================================== */
 
@@ -1650,4 +1724,89 @@ input:focus {
 .style-tazxN {
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* These were inline style tags. Uses id+class to override almost everything */
+#style-NgjaD.style-NgjaD {  
+   width:16px;  
+   height:16px;  
+}  
+#style-s67Un.style-s67Un {  
+   width:80px;  
+   height:80px;  
+   margin:auto;  
+   border:1px solid rgba(116, 116, 116, 1);  
+   padding:4%;  
+   font-size:46px;  
+   text-transform:capitalize;  
+   border-radius:50%;  
+   text-align:center;  
+   background:rgba(229, 229, 229, 1);  
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}  
+#style-A8vXQ.style-A8vXQ {  
+   width:25px;  
+   height:25px;  
+}  
+#style-RvecR.style-RvecR {  
+   width:20px;  
+   height:20px;  
+}  
+#style-Tl7lA.style-Tl7lA {  
+   width:25px;  
+   height:25px;  
+}  
+#style-FBt98.style-FBt98 {  
+   width:20px;  
+   height:20px;  
+}  
+#style-HprGb.style-HprGb {  
+   width:25px;  
+   height:25px;  
+}  
+#style-6fN9Z.style-6fN9Z {  
+   width:20px;  
+   height:20px;  
+}  
+#style-UXzjm.style-UXzjm {  
+   width:25px;  
+   height:25px;  
+}  
+#style-iV1PL.style-iV1PL {  
+   width:20px;  
+   height:20px;  
+}  
+#style-ndMoV.style-ndMoV {  
+   width:25px;  
+   height:25px;  
+}  
+#style-KXNzS.style-KXNzS {  
+   width:20px;  
+   height:20px;  
+}  
+#style-WMqao.style-WMqao {  
+   width:25px;  
+   height:25px;  
+}  
+#style-SzxAe.style-SzxAe {  
+   width:20px;  
+   height:20px;  
+}  
+#style-4rwki.style-4rwki {  
+   width:25px;  
+   height:25px;  
+}  
+#style-kSeEJ.style-kSeEJ {  
+   width:20px;  
+   height:20px;  
+}  
+#style-v1oDM.style-v1oDM {  
+   width:25px;  
+   height:25px;  
+}  
+#style-DJMU4.style-DJMU4 {  
+   width:20px;  
+   height:20px;  
 }
