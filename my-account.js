@@ -330,4 +330,132 @@ document.addEventListener('DOMContentLoaded', function() {
     initOrderTracking();
     initCopyOrderId();
     initAvatarUpload();
+    initNavigationEffects();
+    
+    /**
+     * Initialize navigation hover and interaction effects
+     */
+    function initNavigationEffects() {
+        const navItems = document.querySelectorAll('.myaccounttabs');
+        
+        navItems.forEach((item, index) => {
+            // Add staggered animation delay
+            item.style.setProperty('--animation-delay', `${index * 0.1}s`);
+            
+            // Add click ripple effect
+            item.addEventListener('click', function(e) {
+                createRippleEffect(e, this);
+            });
+            
+            // Add loading state for navigation links
+            const link = item.querySelector('a');
+            if (link) {
+                link.addEventListener('click', function(e) {
+                    const isLogout = this.hasAttribute('data-logout') || 
+                                   this.href.includes('customer-logout');
+                    
+                    // Don't add loading state for logout (handled by popup)
+                    if (!isLogout) {
+                        item.classList.add('loading');
+                        
+                        // Add loading spinner to icon
+                        const iconDown = item.querySelector('.icondown img');
+                        if (iconDown) {
+                            iconDown.style.animation = 'spin 1s linear infinite';
+                        }
+                        
+                        // Remove loading state after navigation
+                        setTimeout(() => {
+                            item.classList.remove('loading');
+                            if (iconDown) {
+                                iconDown.style.animation = '';
+                            }
+                        }, 2000);
+                    }
+                });
+                
+                // Add ARIA labels for accessibility
+                const text = item.querySelector('.tab-text-myaccount strong');
+                if (text) {
+                    link.setAttribute('aria-label', `Navigate to ${text.textContent}`);
+                }
+                
+                // Add keyboard navigation
+                link.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.click();
+                    }
+                });
+            }
+        });
+        
+        // Set active states based on current URL
+        const currentUrl = window.location.href;
+        navItems.forEach(item => {
+            const link = item.querySelector('a');
+            if (link && currentUrl.includes(link.getAttribute('href'))) {
+                item.classList.add('is-active');
+            }
+        });
+    }
+    
+    /**
+     * Create ripple effect on click
+     */
+    function createRippleEffect(event, element) {
+        const ripple = document.createElement('span');
+        const rect = element.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = event.clientX - rect.left - size / 2;
+        const y = event.clientY - rect.top - size / 2;
+        
+        ripple.style.cssText = `
+            position: absolute;
+            width: ${size}px;
+            height: ${size}px;
+            left: ${x}px;
+            top: ${y}px;
+            background: radial-gradient(circle, rgba(124, 41, 216, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple 0.6s ease-out;
+            pointer-events: none;
+            z-index: 1;
+        `;
+        
+        element.appendChild(ripple);
+        
+        // Remove ripple after animation
+        setTimeout(() => {
+            if (ripple.parentNode) {
+                ripple.parentNode.removeChild(ripple);
+            }
+        }, 600);
+    }
 });
+
+// Add CSS for navigation effects
+if (!document.querySelector('#navigation-effects-styles')) {
+    const style = document.createElement('style');
+    style.id = 'navigation-effects-styles';
+    style.textContent = `
+        @keyframes ripple {
+            to {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .myaccounttabs.loading {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+    `;
+    document.head.appendChild(style);
+}
