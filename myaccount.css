@@ -1,3 +1,10 @@
+
+.myacctab .myaccounttabs:nth-child(1) {
+  
+    display: none;
+}
+
+
 /* ==============================================
    Base Styles & Reset - Mobile First Design
    ============================================== */
@@ -204,51 +211,417 @@ img {
    Mobile Navigation Tabs - Dashboard
    ============================================== */
 
+/* Navigation styles moved to separate files:
+   - nav-base.css
+   - nav-hover-effects.css  
+   - nav-animations.css
+   - nav-responsive.css
+   - nav-special-effects.css
+   
+   NEW: Complete navigation styling now in woocommerce-nav-styles.css
+   This includes all hover effects, animations, and responsive design.
+*/
+
+/* ==============================================
+   WooCommerce Account Navigation - Enhanced Hover Effects
+   ============================================== */
+
+/* CSS Variables for navigation styling */
+:root {
+  --nav-primary-color: #7c29d8;
+  --nav-primary-light: rgba(124, 41, 216, 0.1);
+  --nav-primary-dark: #5a1f9e;
+  --nav-transition: all 0.3s cubic-bezier(0.32, 0.74, 0.57, 1);
+  --nav-shadow-hover: 0 8px 25px rgba(124, 41, 216, 0.15);
+  --nav-shadow-active: 0 4px 15px rgba(124, 41, 216, 0.2);
+}
+
+/* Base Navigation Container */
 .myaccountnavigationtab {
   margin-top: 20px;
   padding: 0 15px;
+  position: relative;
 }
 
+.myaccountnavigationtab .container {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.myacctab {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Navigation Item Base Styles */
 .myaccounttabs {
-  padding: 20px 20px;
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
-  margin-bottom: 15px;
-  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
   background: var(--bg-white);
+  border: 1px solid var(--border-color);
+  transition: var(--nav-transition);
+  box-shadow: var(--shadow-light);
+}
+
+.myaccounttabs a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  z-index: 2;
 }
 
 .tabmain {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 18px 20px;
+  position: relative;
+  transition: var(--nav-transition);
 }
 
 .svgtext {
   display: flex;
   align-items: center;
+  gap: 16px;
 }
 
 .svgtext img {
-  width: 25px;
-  height: 25px;
+  width: 24px;
+  height: 24px;
+  transition: var(--nav-transition);
+  filter: brightness(0) saturate(100%) invert(40%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(95%) contrast(95%);
 }
 
 .tab-text-myaccount {
-  color: rgba(23, 23, 23, 1);
-  margin-left: 20px;
+  color: var(--text-color);
+  margin: 0;
 }
 
 .tab-text-myaccount strong {
-  color: #212121;
-  font-weight: 400;
-  margin-bottom: 3px;
+  color: var(--text-color);
+  font-weight: 500;
+  font-size: 15px;
+  transition: var(--nav-transition);
+  letter-spacing: 0.3px;
   display: block;
-  font-size: 16px;
+  margin: 0;
+}
+
+.icondown {
+  transition: var(--nav-transition);
 }
 
 .icondown img {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
+  transition: var(--nav-transition);
+  filter: brightness(0) saturate(100%) invert(40%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(95%) contrast(95%);
+}
+
+/* ==============================================
+   HOVER EFFECTS - The Magic Happens Here!
+   ============================================== */
+
+.myaccounttabs:hover {
+  transform: translateY(-3px);
+  box-shadow: 
+    var(--nav-shadow-hover),
+    0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: var(--nav-primary-color);
+}
+
+.myaccounttabs:hover .svgtext img {
+  filter: brightness(0) saturate(100%) invert(47%) sepia(96%) saturate(2028%) hue-rotate(266deg) brightness(91%) contrast(88%);
+  transform: scale(1.1);
+}
+
+.myaccounttabs:hover .tab-text-myaccount strong {
+  color: var(--nav-primary-color);
+  transform: translateX(2px);
+}
+
+.myaccounttabs:hover .icondown {
+  transform: translateX(4px);
+}
+
+.myaccounttabs:hover .icondown img {
+  filter: brightness(0) saturate(100%) invert(47%) sepia(96%) saturate(2028%) hue-rotate(266deg) brightness(91%) contrast(88%);
+}
+
+/* ==============================================
+   ACTIVE STATE STYLING
+   ============================================== */
+
+.myaccounttabs.is-active,
+.myaccounttabs.woocommerce-MyAccount-navigation-link--dashboard.is-active,
+.myaccounttabs.woocommerce-MyAccount-navigation-link--orders.is-active,
+.myaccounttabs.woocommerce-MyAccount-navigation-link--downloads.is-active,
+.myaccounttabs.woocommerce-MyAccount-navigation-link--edit-address.is-active,
+.myaccounttabs.woocommerce-MyAccount-navigation-link--edit-account.is-active {
+  background: linear-gradient(135deg, var(--nav-primary-light) 0%, var(--bg-white) 100%);
+  border-color: var(--nav-primary-color);
+  box-shadow: 
+    var(--nav-shadow-active),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.myaccounttabs.is-active .svgtext img,
+.myaccounttabs.woocommerce-MyAccount-navigation-link--dashboard.is-active .svgtext img,
+.myaccounttabs.woocommerce-MyAccount-navigation-link--orders.is-active .svgtext img,
+.myaccounttabs.woocommerce-MyAccount-navigation-link--downloads.is-active .svgtext img,
+.myaccounttabs.woocommerce-MyAccount-navigation-link--edit-address.is-active .svgtext img,
+.myaccounttabs.woocommerce-MyAccount-navigation-link--edit-account.is-active .svgtext img {
+  filter: brightness(0) saturate(100%) invert(47%) sepia(96%) saturate(2028%) hue-rotate(266deg) brightness(91%) contrast(88%);
+}
+
+.myaccounttabs.is-active .tab-text-myaccount strong,
+.myaccounttabs.woocommerce-MyAccount-navigation-link--dashboard.is-active .tab-text-myaccount strong,
+.myaccounttabs.woocommerce-MyAccount-navigation-link--orders.is-active .tab-text-myaccount strong,
+.myaccounttabs.woocommerce-MyAccount-navigation-link--downloads.is-active .tab-text-myaccount strong,
+.myaccounttabs.woocommerce-MyAccount-navigation-link--edit-address.is-active .tab-text-myaccount strong,
+.myaccounttabs.woocommerce-MyAccount-navigation-link--edit-account.is-active .tab-text-myaccount strong {
+  color: var(--nav-primary-color);
+  font-weight: 600;
+}
+
+.myaccounttabs.is-active .icondown img,
+.myaccounttabs.woocommerce-MyAccount-navigation-link--dashboard.is-active .icondown img,
+.myaccounttabs.woocommerce-MyAccount-navigation-link--orders.is-active .icondown img,
+.myaccounttabs.woocommerce-MyAccount-navigation-link--downloads.is-active .icondown img,
+.myaccounttabs.woocommerce-MyAccount-navigation-link--edit-address.is-active .icondown img,
+.myaccounttabs.woocommerce-MyAccount-navigation-link--edit-account.is-active .icondown img {
+  filter: brightness(0) saturate(100%) invert(47%) sepia(96%) saturate(2028%) hue-rotate(266deg) brightness(91%) contrast(88%);
+}
+
+/* ==============================================
+   ADVANCED ANIMATIONS & EFFECTS
+   ============================================== */
+
+/* Ripple effect on click */
+.myaccounttabs::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle, var(--nav-primary-color) 0%, transparent 70%);
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.6s cubic-bezier(0.32, 0.74, 0.57, 1);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.myaccounttabs:active::before {
+  opacity: 0.1;
+  transform: scale(1);
+  transition: all 0.3s cubic-bezier(0.32, 0.74, 0.57, 1);
+}
+
+/* Shimmer effect on hover */
+.myaccounttabs::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  transition: left 0.6s cubic-bezier(0.32, 0.74, 0.57, 1);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.myaccounttabs:hover::after {
+  left: 100%;
+}
+
+/* Staggered animation for list items */
+.myacctab .myaccounttabs {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideInUp 0.6s cubic-bezier(0.32, 0.74, 0.57, 1) forwards;
+}
+
+.myacctab .myaccounttabs:nth-child(1) { animation-delay: 0.1s; }
+.myacctab .myaccounttabs:nth-child(2) { animation-delay: 0.2s; }
+.myacctab .myaccounttabs:nth-child(3) { animation-delay: 0.3s; }
+.myacctab .myaccounttabs:nth-child(4) { animation-delay: 0.4s; }
+.myacctab .myaccounttabs:nth-child(5) { animation-delay: 0.5s; }
+.myacctab .myaccounttabs:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes slideInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Pulse animation for active item */
+
+
+@keyframes gentlePulse {
+  0%, 100% {
+    box-shadow: 
+      var(--nav-shadow-active),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  }
+  50% {
+    box-shadow: 
+      0 6px 20px rgba(124, 41, 216, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  }
+}
+
+/* ==============================================
+   FOCUS STATES FOR ACCESSIBILITY
+   ============================================== */
+
+.myaccounttabs a:focus {
+  outline: none;
+}
+
+.myaccounttabs a:focus-visible {
+  outline: 2px solid var(--nav-primary-color);
+  outline-offset: 2px;
+  border-radius: 12px;
+}
+
+/* ==============================================
+   RESPONSIVE NAVIGATION ADJUSTMENTS
+   ============================================== */
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .myaccountnavigationtab {
+    padding: 0 12px;
+    margin-top: 15px;
+  }
+
+  .myacctab {
+    gap: 10px;
+  }
+
+  .tabmain {
+    padding: 34px 18px;
+  }
+
+  .svgtext {
+    gap: 14px;
+  }
+
+  .svgtext img {
+    width: 22px;
+    height: 22px;
+  }
+
+  .tab-text-myaccount strong {
+    font-size: 14px;
+  }
+
+  .icondown img {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Reduce hover effects on mobile for better performance */
+  .myaccounttabs:hover {
+    transform: translateY(-2px);
+  }
+
+  /* Disable shimmer effect on mobile */
+  .myaccounttabs::after {
+    display: none;
+  }
+}
+
+/* Desktop enhancements */
+@media (min-width: 1025px) {
+  .myaccountnavigationtab {
+    padding: 0 20px;
+  }
+
+  .myacctab {
+    gap: 15px;
+  }
+
+  .tabmain {
+    padding: 22px 24px;
+  }
+
+  .svgtext {
+    gap: 18px;
+  }
+
+  .svgtext img {
+    width: 26px;
+    height: 26px;
+  }
+
+  .tab-text-myaccount strong {
+    font-size: 16px;
+  }
+
+  .icondown img {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Enhanced hover effects for desktop */
+  .myaccounttabs:hover {
+    transform: translateY(-4px);
+    border-color: var(--nav-primary-color);
+    box-shadow: 
+      var(--nav-shadow-hover),
+      0 4px 12px rgba(0, 0, 0, 0.1),
+      0 0 0 1px rgba(124, 41, 216, 0.2);
+  }
+}
+
+/* ==============================================
+   REDUCED MOTION SUPPORT
+   ============================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .myaccounttabs,
+  .svgtext img,
+  .tab-text-myaccount strong,
+  .icondown,
+  .icondown img {
+    transition: none;
+  }
+
+  .myaccounttabs::before,
+  .myaccounttabs::after {
+    display: none;
+  }
+
+  .myacctab .myaccounttabs {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .myaccounttabs.is-active {
+    animation: none;
+  }
+
+  .myaccounttabs:hover {
+    transform: none;
+  }
 }
 
 /* ==============================================
@@ -1777,10 +2150,6 @@ input[type="radio"]:checked + span {
     padding: 20px;
   }
 
-  /* Hide mobile dashboard on desktop */
-  .myaccountmainmobile {
-    display: none !important;
-  }
 
   .leftside-my-account {
     width: 350px;
