@@ -323,6 +323,94 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000);
     };
 
+    // MAIN FIX: Handle rightside-my-account content
+    const fixRightsideMyAccount = () => {
+        // Only run on desktop
+        if (window.innerWidth >= 768) {
+            const rightSide = document.querySelector('.rightside-my-account');
+            
+            if (rightSide) {
+                // Check if we're on the main dashboard (not a specific page like orders, addresses, etc.)
+                const currentPath = window.location.pathname;
+                const isMainDashboard = currentPath.endsWith('/my-account/') || 
+                                       currentPath.endsWith('/my-account') ||
+                                       (currentPath.includes('/my-account/') && 
+                                        !currentPath.includes('/orders/') && 
+                                        !currentPath.includes('/downloads/') &&
+                                        !currentPath.includes('/addresses/') &&
+                                        !currentPath.includes('/edit-account/') &&
+                                        !currentPath.includes('/payment-methods/'));
+                
+                if (isMainDashboard) {
+                    // Find any navigation menus in the rightside content
+                    const duplicateNavs = rightSide.querySelectorAll('.woocommerce-MyAccount-navigation, nav, .myaccounttabs');
+                    
+                    // Hide all duplicate navigations
+                    duplicateNavs.forEach(nav => {
+                        nav.style.display = 'none';
+                    });
+                    
+                    // Find the main content container
+                    let contentContainer = rightSide.querySelector('.woocommerce-MyAccount-content') || rightSide;
+                    
+                    // Clear any existing navigation content and replace with dashboard
+                    if (!contentContainer.querySelector('.dashboard-content-created')) {
+                        // Mark as created to prevent duplicates
+                        const marker = document.createElement('div');
+                        marker.className = 'dashboard-content-created';
+                        marker.style.display = 'none';
+                        contentContainer.appendChild(marker);
+                        
+                        // Create dashboard content
+                        const dashboardContent = document.createElement('div');
+                        dashboardContent.className = 'my-account-dashboard';
+                        dashboardContent.innerHTML = `
+                            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 12px; margin-bottom: 30px; text-align: center;">
+                                <h2 style="margin: 0 0 10px 0; font-size: 24px; font-weight: 600;">Welcome back!</h2>
+                                <p style="margin: 0; opacity: 0.9; font-size: 16px;">Here's what's happening with your account</p>
+                            </div>
+                            
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px;">
+                                <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); text-align: center;">
+                                    <div style="font-size: 28px; font-weight: bold; color: #7c29d8; margin-bottom: 5px;">12</div>
+                                    <div style="color: #666; font-size: 14px;">Total Orders</div>
+                                </div>
+                                <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); text-align: center;">
+                                    <div style="font-size: 28px; font-weight: bold; color: #7c29d8; margin-bottom: 5px;">2</div>
+                                    <div style="color: #666; font-size: 14px;">Pending Orders</div>
+                                </div>
+                                <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); text-align: center;">
+                                    <div style="font-size: 28px; font-weight: bold; color: #7c29d8; margin-bottom: 5px;">10</div>
+                                    <div style="color: #666; font-size: 14px;">Completed Orders</div>
+                                </div>
+                            </div>
+                            
+                            <div style="background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-bottom: 20px;">
+                                <h3 style="margin: 0 0 15px 0; color: #333; font-size: 18px; font-weight: 600;">Recent Orders</h3>
+                                <div style="display: flex; align-items: center; padding: 15px; border: 1px solid #e0e0e0; border-radius: 6px; margin-bottom: 10px; transition: all 0.3s ease;">
+                                    <img src="https://images.pexels.com/photos/1020585/pexels-photo-1020585.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=1" alt="Product" style="width: 60px; height: 60px; border-radius: 6px; margin-right: 15px; object-fit: cover;">
+                                    <div style="flex: 1;">
+                                        <div style="font-weight: 600; color: #333; margin-bottom: 5px;">Gamer Squad Oversize T-Shirt...</div>
+                                        <div style="font-size: 14px; color: #666;">Order #4741 • Ordered on 07 Jul 2025</div>
+                                    </div>
+                                    <span style="padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 500; text-transform: uppercase; background: #fff3cd; color: #856404;">Processing</span>
+                                </div>
+                                <div style="text-align: center; margin-top: 20px;">
+                                    <a href="/my-account/orders/" style="background: #7c29d8; color: white; padding: 10px 20px; text-decoration: none; border-radius: 6px; display: inline-block; font-weight: 500;">View All Orders</a>
+                                </div>
+                            </div>
+                        `;
+                        
+                        // Clear existing content and add dashboard
+                        contentContainer.innerHTML = '';
+                        contentContainer.appendChild(marker);
+                        contentContainer.appendChild(dashboardContent);
+                    }
+                }
+            }
+        }
+    };
+
     // Initialize all functionality
     initMobileMenu();
     initLogoutPopup();
@@ -330,109 +418,19 @@ document.addEventListener('DOMContentLoaded', function() {
     initOrderTracking();
     initCopyOrderId();
     initAvatarUpload();
-    initNavigationEffects();
     
-    /**
-     * Initialize navigation hover and interaction effects
-     */
-    function initNavigationEffects() {
-        const navItems = document.querySelectorAll('.myaccounttabs');
-        
-        navItems.forEach((item, index) => {
-            // Add staggered animation delay
-            item.style.setProperty('--animation-delay', `${index * 0.1}s`);
-            
-            // Add click ripple effect
-            item.addEventListener('click', function(e) {
-                createRippleEffect(e, this);
-            });
-            
-            // Add loading state for navigation links
-            const link = item.querySelector('a');
-            if (link) {
-                link.addEventListener('click', function(e) {
-                    const isLogout = this.hasAttribute('data-logout') || 
-                                   this.href.includes('customer-logout');
-                    
-                    // Don't add loading state for logout (handled by popup)
-                    if (!isLogout) {
-                        item.classList.add('loading');
-                        
-                        // Add loading spinner to icon
-                        const iconDown = item.querySelector('.icondown img');
-                        if (iconDown) {
-                            iconDown.style.animation = 'spin 1s linear infinite';
-                        }
-                        
-                        // Remove loading state after navigation
-                        setTimeout(() => {
-                            item.classList.remove('loading');
-                            if (iconDown) {
-                                iconDown.style.animation = '';
-                            }
-                        }, 2000);
-                    }
-                });
-                
-                // Add ARIA labels for accessibility
-                const text = item.querySelector('.tab-text-myaccount strong');
-                if (text) {
-                    link.setAttribute('aria-label', `Navigate to ${text.textContent}`);
-                }
-                
-                // Add keyboard navigation
-                link.addEventListener('keydown', function(e) {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        this.click();
-                    }
-                });
-            }
-        });
-        
-        // Set active states based on current URL
-        const currentUrl = window.location.href;
-        navItems.forEach(item => {
-            const link = item.querySelector('a');
-            if (link && currentUrl.includes(link.getAttribute('href'))) {
-                item.classList.add('is-active');
-            }
-        });
-    }
+    // Fix the rightside-my-account issue
+    fixRightsideMyAccount();
     
-    /**
-     * Create ripple effect on click
-     */
-    function createRippleEffect(event, element) {
-        const ripple = document.createElement('span');
-        const rect = element.getBoundingClientRect();
-        const size = Math.max(rect.width, rect.height);
-        const x = event.clientX - rect.left - size / 2;
-        const y = event.clientY - rect.top - size / 2;
-        
-        ripple.style.cssText = `
-            position: absolute;
-            width: ${size}px;
-            height: ${size}px;
-            left: ${x}px;
-            top: ${y}px;
-            background: radial-gradient(circle, rgba(124, 41, 216, 0.3) 0%, transparent 70%);
-            border-radius: 50%;
-            transform: scale(0);
-            animation: ripple 0.6s ease-out;
-            pointer-events: none;
-            z-index: 1;
-        `;
-        
-        element.appendChild(ripple);
-        
-        // Remove ripple after animation
-        setTimeout(() => {
-            if (ripple.parentNode) {
-                ripple.parentNode.removeChild(ripple);
-            }
-        }, 600);
-    }
+    // Also run on window resize
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 768) {
+            fixRightsideMyAccount();
+        }
+    });
+    
+    // Run again after a short delay to ensure DOM is fully loaded
+    setTimeout(fixRightsideMyAccount, 500);
 });
 
 // Add CSS for navigation effects
@@ -455,6 +453,23 @@ if (!document.querySelector('#navigation-effects-styles')) {
         .myaccounttabs.loading {
             pointer-events: none;
             opacity: 0.7;
+        }
+        
+        /* Ensure mobile menu overlay styles */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 99;
+        }
+        
+        /* Dashboard hover effects */
+        .my-account-dashboard [style*="display: flex"]:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
         }
     `;
     document.head.appendChild(style);
