@@ -1,2564 +1,1030 @@
 
-/* ==============================================
-   Base Styles & Reset - Mobile First Design
-   ============================================== */
+/* Mobile Widget Toggle Styles */
+@media (max-width: 767px) {
+    .nasa-top-sidebar .nasa-toggle-widget {
+        display: block !important;
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 30px;
+        height: 30px;
+        z-index: 2;
+        cursor: pointer;
+        color: #000; /* Ensure color is set */
+    }
 
-/* Base font and colors - Purple theme */
-:root {
-  --primary-color: #7c29d8;
-  --primary-light: rgba(124, 41, 216, 0.1);
-  --primary-dark: #5a1f9e;
-  --text-color: #212121;
-  --text-light: #717171;
-  --text-white: #ffffff;
-  --border-color: #E8E8E8;
-  --bg-light: #F5F5F5;
-  --bg-white: #ffffff;
-  --success-color: #009B19;
-  --warning-color: #D97706;
-  --error-color: #DC3545;
-  --font-global: "PoppinsCustom", "RobotoCustom", sans-serif;
-  --shadow-light: 0 2px 10px rgba(0,0,0,0.05);
-  --shadow-medium: 0 4px 20px rgba(0,0,0,0.1);
-  --border-radius: 12px;
-  --border-radius-small: 8px;
+
+
+
+
+
+
+
+
+
+
+
+
+/* Mobile Clear Filters Button */
+.nasa-clear-filters-mobile {
+    padding: 10px 15px;
+    background: #f5f5f5;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
 }
 
-/* Reset and Base Styles */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font-family: var(--font-global);
-  vertical-align: baseline;
-  -webkit-tap-highlight-color: transparent;
-  scroll-behavior: smooth;
+.nasa-clear-filters-mobile a {
+    color: #333;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
 }
 
-body {
-  line-height: 1;
-  font-size: 14px;
-  background: rgba(236, 236, 236, 1);
-  min-height: 100vh;
-  font-family: var(--font-global);
-  overflow-x: hidden;
-  width: 100%;
-}
-
-html {
-  font-family: var(--font-global);
-  overflow-x: hidden;
-  width: 100%;
-}
-
-.order-desktop {
-  background: rgba(236, 236, 236, 1);
-  padding: 0;
-  min-height: 100vh;
-  font-family: var(--font-global);
-  width: 100%;
-  overflow-x: hidden;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1%;
-  width: 100%;
-}
-
-/* Hide default WooCommerce content only for dashboard */
-.woocommerce-MyAccount-content:not(.woocommerce-account-content),
-.woocommerce-account .woocommerce h2:not(.woocommerce-account-content h2),
-.woocommerce-account .entry-header:not(.woocommerce-account-content .entry-header),
-.woocommerce-account .entry-title:not(.woocommerce-account-content .entry-title) {
-  display: none !important;
-}
-
-.account-nav.account-user {
-  display: none;
-}
-
-/* Remove default list styles */
-ul, ol {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-/* Link styles */
-a {
-  color: inherit;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-/* Image responsiveness */
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* ==============================================
-   Mobile First Account Layout
-   ============================================== */
-
-.my-account {
-  padding: 0;
-  min-height: 100vh;
-  width: 100%;
-  overflow-x: hidden;
-}
-
-/* Main account wrapper */
-.myaccount-order {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  width: 100%;
-  overflow-x: hidden;
-}
-
-/* ==============================================
-   Mobile Account Profile Section - Dashboard
-   ============================================== */
-
-.myaccountmainmobile {
-  background: var(--bg-white);
-  width: 100%;
-  min-height: 100vh;
-}
-
-.myaccountmobile .profile {
-  text-align: center;
-  padding: 20px;
-  color: #000;
-  position: relative;
-  border-bottom: 1px solid rgba(245, 245, 245, 1);
-  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.15);
-}
-
-.edit-profile {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  padding: 5px;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.edit-profile img {
-  width: 16px;
-  height: 16px;
-}
-
-.profile .snipcss0-0-0-1 p,
-.profile .user-avatar {
-  width: 80px;
-  height: 80px;
-  margin: auto;
-  border: 1px solid rgba(116, 116, 116, 1);
-  padding: 4%;
-  font-size: 46px;
-  text-transform: capitalize;
-  border-radius: 50%;
-  text-align: center;
-  background: rgba(229, 229, 229, 1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.profile h2 {
-  margin: 10px 0 8px;
-  font-size: 18px;
-  color: #5f5f5f;
-  font-weight: 500;
-}
-
-.profile .info {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin-top: 5px;
-  flex-wrap: wrap;
-}
-
-.profile .info p {
-  margin: 0;
-  color: #5f5f5f;
-  font-size: 14px;
-}
-
-.seprator {
-  border-left: 1px solid;
-  width: 5px;
-  color: #5f5f5f;
-  height: 18px;
-}
-
-/* ==============================================
-   Mobile Navigation Tabs - Dashboard
-   ============================================== */
-
-/* Navigation styles moved to separate files:
-   - nav-base.css
-   - nav-hover-effects.css  
-   - nav-animations.css
-   - nav-responsive.css
-   - nav-special-effects.css
-   
-   NEW: Complete navigation styling now in woocommerce-nav-styles.css
-   This includes all hover effects, animations, and responsive design.
-*/
-
-/* ==============================================
-   WooCommerce Account Navigation - Enhanced Hover Effects
-   ============================================== */
-
-/* CSS Variables for navigation styling */
-:root {
-  --nav-primary-color: #7c29d8;
-  --nav-primary-light: rgba(124, 41, 216, 0.1);
-  --nav-primary-dark: #5a1f9e;
-  --nav-transition: all 0.3s cubic-bezier(0.32, 0.74, 0.57, 1);
-  --nav-shadow-hover: 0 8px 25px rgba(124, 41, 216, 0.15);
-  --nav-shadow-active: 0 4px 15px rgba(124, 41, 216, 0.2);
-}
-
-/* Base Navigation Container */
-.myaccountnavigationtab {
-  margin-top: 20px;
-  padding: 0 15px;
-  position: relative;
-}
-
-.myaccountnavigationtab .container {
-  max-width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-.myacctab {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-/* Navigation Item Base Styles */
-.myaccounttabs {
-  position: relative;
-  overflow: hidden;
-  border-radius: 12px;
-  background: var(--bg-white);
-  border: 1px solid var(--border-color);
-  transition: var(--nav-transition);
-  box-shadow: var(--shadow-light);
-}
-
-.myaccounttabs a {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-  position: relative;
-  z-index: 2;
-}
-
-.tabmain {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 18px 20px;
-  position: relative;
-  transition: var(--nav-transition);
-}
-
-.svgtext {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.svgtext img {
-  width: 24px;
-  height: 24px;
-  transition: var(--nav-transition);
-  filter: brightness(0) saturate(100%) invert(40%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(95%) contrast(95%);
-}
-
-.tab-text-myaccount {
-  color: var(--text-color);
-  margin: 0;
-}
-
-.tab-text-myaccount strong {
-  color: var(--text-color);
-  font-weight: 500;
-  font-size: 15px;
-  transition: var(--nav-transition);
-  letter-spacing: 0.3px;
-  display: block;
-  margin: 0;
-}
-
-.icondown {
-  transition: var(--nav-transition);
-}
-
-.icondown img {
-  width: 18px;
-  height: 18px;
-  transition: var(--nav-transition);
-  filter: brightness(0) saturate(100%) invert(40%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(95%) contrast(95%);
-}
-
-/* ==============================================
-   HOVER EFFECTS - The Magic Happens Here!
-   ============================================== */
-
-.myaccounttabs:hover {
-  transform: translateY(-3px);
-  box-shadow: 
-    var(--nav-shadow-hover),
-    0 4px 12px rgba(0, 0, 0, 0.1);
-  border-color: var(--nav-primary-color);
-}
-
-.myaccounttabs:hover .svgtext img {
-  filter: brightness(0) saturate(100%) invert(47%) sepia(96%) saturate(2028%) hue-rotate(266deg) brightness(91%) contrast(88%);
-  transform: scale(1.1);
-}
-
-.myaccounttabs:hover .tab-text-myaccount strong {
-  color: var(--nav-primary-color);
-  transform: translateX(2px);
-}
-
-.myaccounttabs:hover .icondown {
-  transform: translateX(4px);
-}
-
-.myaccounttabs:hover .icondown img {
-  filter: brightness(0) saturate(100%) invert(47%) sepia(96%) saturate(2028%) hue-rotate(266deg) brightness(91%) contrast(88%);
-}
-
-/* ==============================================
-   ACTIVE STATE STYLING
-   ============================================== */
-
-.myaccounttabs.is-active,
-.myaccounttabs.woocommerce-MyAccount-navigation-link--dashboard.is-active,
-.myaccounttabs.woocommerce-MyAccount-navigation-link--orders.is-active,
-.myaccounttabs.woocommerce-MyAccount-navigation-link--downloads.is-active,
-.myaccounttabs.woocommerce-MyAccount-navigation-link--edit-address.is-active,
-.myaccounttabs.woocommerce-MyAccount-navigation-link--edit-account.is-active {
-  background: linear-gradient(135deg, var(--nav-primary-light) 0%, var(--bg-white) 100%);
-  border-color: var(--nav-primary-color);
-  box-shadow: 
-    var(--nav-shadow-active),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
-}
-
-.myaccounttabs.is-active .svgtext img,
-.myaccounttabs.woocommerce-MyAccount-navigation-link--dashboard.is-active .svgtext img,
-.myaccounttabs.woocommerce-MyAccount-navigation-link--orders.is-active .svgtext img,
-.myaccounttabs.woocommerce-MyAccount-navigation-link--downloads.is-active .svgtext img,
-.myaccounttabs.woocommerce-MyAccount-navigation-link--edit-address.is-active .svgtext img,
-.myaccounttabs.woocommerce-MyAccount-navigation-link--edit-account.is-active .svgtext img {
-  filter: brightness(0) saturate(100%) invert(47%) sepia(96%) saturate(2028%) hue-rotate(266deg) brightness(91%) contrast(88%);
-}
-
-.myaccounttabs.is-active .tab-text-myaccount strong,
-.myaccounttabs.woocommerce-MyAccount-navigation-link--dashboard.is-active .tab-text-myaccount strong,
-.myaccounttabs.woocommerce-MyAccount-navigation-link--orders.is-active .tab-text-myaccount strong,
-.myaccounttabs.woocommerce-MyAccount-navigation-link--downloads.is-active .tab-text-myaccount strong,
-.myaccounttabs.woocommerce-MyAccount-navigation-link--edit-address.is-active .tab-text-myaccount strong,
-.myaccounttabs.woocommerce-MyAccount-navigation-link--edit-account.is-active .tab-text-myaccount strong {
-  color: var(--nav-primary-color);
-  font-weight: 600;
-}
-
-.myaccounttabs.is-active .icondown img,
-.myaccounttabs.woocommerce-MyAccount-navigation-link--dashboard.is-active .icondown img,
-.myaccounttabs.woocommerce-MyAccount-navigation-link--orders.is-active .icondown img,
-.myaccounttabs.woocommerce-MyAccount-navigation-link--downloads.is-active .icondown img,
-.myaccounttabs.woocommerce-MyAccount-navigation-link--edit-address.is-active .icondown img,
-.myaccounttabs.woocommerce-MyAccount-navigation-link--edit-account.is-active .icondown img {
-  filter: brightness(0) saturate(100%) invert(47%) sepia(96%) saturate(2028%) hue-rotate(266deg) brightness(91%) contrast(88%);
-}
-
-/* ==============================================
-   ADVANCED ANIMATIONS & EFFECTS
-   ============================================== */
-
-/* Ripple effect on click */
-.myaccounttabs::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle, var(--nav-primary-color) 0%, transparent 70%);
-  opacity: 0;
-  transform: scale(0);
-  transition: all 0.6s cubic-bezier(0.32, 0.74, 0.57, 1);
-  z-index: 1;
-  pointer-events: none;
-}
-
-.myaccounttabs:active::before {
-  opacity: 0.1;
-  transform: scale(1);
-  transition: all 0.3s cubic-bezier(0.32, 0.74, 0.57, 1);
-}
-
-/* Shimmer effect on hover */
-.myaccounttabs::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.4) 50%,
-    transparent 100%
-  );
-  transition: left 0.6s cubic-bezier(0.32, 0.74, 0.57, 1);
-  z-index: 1;
-  pointer-events: none;
-}
-
-.myaccounttabs:hover::after {
-  left: 100%;
-}
-
-/* Staggered animation for list items */
-.myacctab .myaccounttabs {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: slideInUp 0.6s cubic-bezier(0.32, 0.74, 0.57, 1) forwards;
-}
-
-.myacctab .myaccounttabs:nth-child(1) { animation-delay: 0.1s; }
-.myacctab .myaccounttabs:nth-child(2) { animation-delay: 0.2s; }
-.myacctab .myaccounttabs:nth-child(3) { animation-delay: 0.3s; }
-.myacctab .myaccounttabs:nth-child(4) { animation-delay: 0.4s; }
-.myacctab .myaccounttabs:nth-child(5) { animation-delay: 0.5s; }
-.myacctab .myaccounttabs:nth-child(6) { animation-delay: 0.6s; }
-
-@keyframes slideInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Pulse animation for active item */
-
-
-@keyframes gentlePulse {
-  0%, 100% {
-    box-shadow: 
-      var(--nav-shadow-active),
-      inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  }
-  50% {
-    box-shadow: 
-      0 6px 20px rgba(124, 41, 216, 0.3),
-      inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  }
-}
-
-/* ==============================================
-   FOCUS STATES FOR ACCESSIBILITY
-   ============================================== */
-
-.myaccounttabs a:focus {
-  outline: none;
-}
-
-.myaccounttabs a:focus-visible {
-  outline: 2px solid var(--nav-primary-color);
-  outline-offset: 2px;
-  border-radius: 12px;
-}
-
-/* ==============================================
-   RESPONSIVE NAVIGATION ADJUSTMENTS
-   ============================================== */
-
-/* Mobile optimizations */
-@media (max-width: 768px) {
-  .myaccountnavigationtab {
-    padding: 0 12px;
-    margin-top: 15px;
-  }
-
-  .myacctab {
-    gap: 10px;
-  }
-
-  .tabmain {
-    padding: 34px 18px;
-  }
-
-  .svgtext {
-    gap: 14px;
-  }
-
-  .svgtext img {
-    width: 22px;
-    height: 22px;
-  }
-
-  .tab-text-myaccount strong {
-    font-size: 14px;
-  }
-
-  .icondown img {
+.nasa-clear-filters-mobile svg {
     width: 16px;
     height: 16px;
-  }
+}
 
-  /* Reduce hover effects on mobile for better performance */
-  .myaccounttabs:hover {
-    transform: translateY(-2px);
-  }
-
-  /* Disable shimmer effect on mobile */
-  .myaccounttabs::after {
+/* Show only on mobile */
+.nasa-mobile-only {
     display: none;
-  }
 }
 
-/* Desktop enhancements */
-@media (min-width: 1025px) {
-  .myaccountnavigationtab {
-    padding: 0 20px;
-  }
-
-  .myacctab {
-    gap: 15px;
-  }
-
-  .tabmain {
-    padding: 22px 24px;
-  }
-
-  .svgtext {
-    gap: 18px;
-  }
-
-  .svgtext img {
-    width: 26px;
-    height: 26px;
-  }
-
-  .tab-text-myaccount strong {
-    font-size: 16px;
-  }
-
-  .icondown img {
-    width: 20px;
-    height: 20px;
-  }
-
-  /* Enhanced hover effects for desktop */
-  .myaccounttabs:hover {
-    transform: translateY(-4px);
-    border-color: var(--nav-primary-color);
-    box-shadow: 
-      var(--nav-shadow-hover),
-      0 4px 12px rgba(0, 0, 0, 0.1),
-      0 0 0 1px rgba(124, 41, 216, 0.2);
-  }
+@media (max-width: 767px) {
+    .nasa-mobile-only {
+        display: block;
+    }
 }
 
-/* ==============================================
-   REDUCED MOTION SUPPORT
-   ============================================== */
 
-@media (prefers-reduced-motion: reduce) {
-  .myaccounttabs,
-  .svgtext img,
-  .tab-text-myaccount strong,
-  .icondown,
-  .icondown img {
-    transition: none;
-  }
-
-  .myaccounttabs::before,
-  .myaccounttabs::after {
-    display: none;
-  }
-
-  .myacctab .myaccounttabs {
-    animation: none;
-    opacity: 1;
-    transform: none;
-  }
-
-  .myaccounttabs.is-active {
-    animation: none;
-  }
-
-  .myaccounttabs:hover {
-    transform: none;
-  }
+/* Make the filter header sticky and ensure it stays above content */
+.nasa-close-sidebar-wrap {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: white; /* or your preferred background color */
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee; /* optional separator */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-/* ==============================================
-   Left sidebar - Desktop/Mobile Toggle
-   ============================================== */
+/* Ensure the filter content stays below */
+.nasa-top-sidebar-off-canvas {
+    position: relative;
+    z-index: 1;
+    margin-top: 0;
+}
 
-.leftside-my-account {
-  width: 100%;
-  background: var(--bg-white);
-  border-radius: 0;
-  overflow: hidden;
-  box-shadow: none;
+/* Optional: Add some shadow when scrolling */
+.nasa-close-sidebar-wrap.scrolled {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* ===================================
+   MOBILE SCROLLING FIX
+   =================================== */
+@media (max-width: 767px) {
+    /* Fix the main mobile sidebar container to allow proper scrolling */
+    .nasa-in-mobile .columns.nasa-top-sidebar .nasa-top-sidebar-off-canvas {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: 0;
+        overflow-y: auto !important; /* Force scrolling */
+        padding: 15px 20px;
+        direction: ltr; /* Fix direction for proper scrolling */
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    }
+    
+    /* Ensure the close button header doesn't interfere with scrolling */
+    .nasa-in-mobile .columns.nasa-top-sidebar .nasa-close-sidebar-wrap {
+        position: relative; /* Not sticky to avoid scroll issues */
+        z-index: 10;
+        background: white;
+        border-bottom: 1px solid #eee;
+        flex-shrink: 0; /* Don't shrink */
+    }
+    
+    /* Make sure widget content can scroll properly */
+    .nasa-in-mobile .columns.nasa-top-sidebar .nasa-widget-wrap {
+        display: block !important;
+        margin-bottom: 20px;
+    }
+    
+    /* Ensure color filter items are properly spaced and visible */
+    .nasa-in-mobile .nasa-variation-filters {
+        padding: 10px 0;
+    }
+    
+    .nasa-in-mobile .nasa-variation-filters li {
+        margin-bottom: 12px !important;
+        padding: 8px 5px !important;
+        clear: both;
+    }
+    
+    /* Fix color text visibility */
+    .nasa-in-mobile .nasa-text-variation-color {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 14px;
+        margin-left: 8px;
+        line-height: 1.4;
+    }
+    
+    /* Ensure the sidebar has proper height */
+    .nasa-in-mobile .columns.nasa-top-sidebar {
+        height: 100vh;
+        overflow: hidden; /* Prevent outer scroll */
+    }
+}
+/* Part 1 - Base Styles and Utilities */
+.nasa-relative { position: relative; }
+.nasa-bold { font-weight: 600; }
+
+.nasa-stclose {
   position: relative;
-  z-index: 1000;
-}
-
-/* Mobile menu toggle button */
-.mobile-menu-toggle {
-  display: flex;
-  width: 100%;
-  padding: 18px 20px;
-  background: var(--primary-color);
-  border: none;
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--text-white);
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.mobile-menu-toggle:hover {
-  background: var(--primary-dark);
-}
-
-.mobile-menu-toggle svg {
-  width: 24px;
-  height: 24px;
-  fill: currentColor;
-  transition: transform 0.3s ease;
-}
-
-.mobile-menu-toggle[aria-expanded="true"] svg {
-  transform: rotate(180deg);
-}
-
-/* Mobile menu overlay - Fixed */
-.mobile-menu-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 999;
-  opacity: 0;
-  animation: fadeIn 0.3s ease-out forwards;
-}
-
-@keyframes fadeIn {
-  to { opacity: 1; }
-}
-
-/* User profile section - Hidden by default on mobile */
-.userprofileleft {
-  display: none;
-  text-align: center;
-  padding: 30px 20px;
-  position: relative;
-  border-bottom: 1px solid var(--border-color);
-  background: linear-gradient(135deg, var(--primary-light) 0%, var(--bg-white) 100%);
-}
-
-/* Navigation menu - Hidden by default on mobile */
-.leftside-my-account .myaccountnavigationtab {
-  display: none;
-  padding: 20px;
-}
-
-/* Show when mobile menu is open */
-.mobile-menu-open .userprofileleft,
-.mobile-menu-open .myaccountnavigationtab {
-  display: block;
-  animation: slideDown 0.3s ease-out;
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Mobile menu open state */
-.mobile-menu-open {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1001;
-  width: 100%;
-  height: 100vh;
-  overflow-y: auto;
-  background: var(--bg-white);
-}
-
-/* Prevent body scroll when menu is open */
-body.mobile-menu-open {
-  overflow: hidden;
-}
-
-/* ==============================================
-   WooCommerce Content Wrapper - MOBILE FIRST
-   ============================================== */
-
-.woocommerce-content-wrapper {
-  background: var(--bg-white);
-  min-height: 100vh;
-  width: 100%;
-  padding: 0;
-}
-
-.woocommerce-account-content {
-  padding: 0;
-  background: var(--bg-white);
-  width: 100%;
-  overflow-x: hidden;
-}
-
-/* ==============================================
-   MOBILE ACCOUNT PAGES STYLING - COMPLETELY FIXED
-   ============================================== */
-
-/* Top heading for all WooCommerce pages - MOBILE */
-.usermyaccaddress {
-  width: 100%;
-  background: var(--bg-white);
-}
-
-.top-heading-main {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 15px;
-  align-items: center;
-  border-bottom: 1px solid rgba(231, 231, 231, 1);
-  background: var(--bg-white);
-  width: 100%;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.top-heading-main a {
-  line-height: 0px;
-  flex-shrink: 0;
-}
-
-.top-heading-main a img {
-  width: 24px;
-  height: 24px;
-}
-
-.heading-top {
-  text-align: center;
-  flex: 1;
-  color: #212121;
-  font-size: 16px;
-  font-weight: 600;
-  margin: 0;
-}
-
-/* MOBILE FORM STYLING - COMPLETELY REDESIGNED */
-.woocommerce-account-content .woocommerce-form,
-.woocommerce-account-content .woocommerce-address-fields,
-.woocommerce-account-content .woocommerce-EditAccountForm {
-  background: var(--bg-white);
-  padding: 20px 15px;
-  border-radius: 0;
-  margin-bottom: 0;
-  border: none;
-  box-shadow: none;
-  width: 100%;
-}
-
-/* Mobile form rows */
-.woocommerce-account-content .form-row {
-  margin-bottom: 20px;
-  width: 100%;
-}
-
-/* Mobile labels */
-.woocommerce-account-content label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 600;
-  color: var(--text-color);
-  font-size: 14px;
-}
-
-.woocommerce-account-content .required {
-  color: var(--error-color);
-  font-weight: bold;
-}
-
-/* Mobile inputs - ENHANCED STYLING */
-.woocommerce-account-content input[type="text"],
-.woocommerce-account-content input[type="email"],
-.woocommerce-account-content input[type="password"],
-.woocommerce-account-content input[type="tel"],
-.woocommerce-account-content select,
-.woocommerce-account-content textarea {
-  width: 100%;
-  padding: 15px 16px;
-  border: 2px solid var(--border-color);
-  border-radius: var(--border-radius-small);
-  font-size: 16px; /* Prevents zoom on iOS */
-  font-family: var(--font-global);
-  transition: all 0.3s ease;
-  background: var(--bg-white);
-  color: var(--text-color);
-  -webkit-appearance: none;
-  appearance: none;
-}
-
-.woocommerce-account-content input:focus,
-.woocommerce-account-content select:focus,
-.woocommerce-account-content textarea:focus {
-  outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px var(--primary-light);
-  transform: translateY(-2px);
-}
-
-/* Mobile buttons - ENHANCED */
-.woocommerce-account-content .button,
-.woocommerce-account-content button {
-  background: var(--primary-color);
-  color: var(--text-white);
-  padding: 15px 24px;
-  border: none;
-  border-radius: var(--border-radius-small);
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: var(--font-global);
-  width: 100%;
-  margin-top: 10px;
-}
-
-.woocommerce-account-content .button:hover,
-.woocommerce-account-content button:hover {
-  background: var(--primary-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(124, 41, 216, 0.3);
-}
-
-/* Mobile password fieldset styling */
-.woocommerce-account-content fieldset {
-  border: 2px solid var(--border-color);
-  border-radius: var(--border-radius-small);
-  padding: 20px 15px;
-  margin: 20px 0;
-  background: var(--bg-light);
-}
-
-.woocommerce-account-content fieldset legend {
-  padding: 0 10px;
-  font-weight: 600;
-  color: var(--text-color);
-  background: var(--bg-white);
-  border-radius: 4px;
-  font-size: 16px;
-}
-
-/* Account display name description */
-.woocommerce-account-content #account_display_name_description {
-  font-size: 12px;
-  color: var(--text-light);
-  font-style: italic;
-  margin-top: 5px;
-  display: block;
-  line-height: 1.4;
-}
-
-/* Clear fix */
-.woocommerce-account-content .clear {
-  clear: both;
-}
-
-/* Form row layouts - MOBILE FIRST */
-.woocommerce-account-content .form-row-first,
-.woocommerce-account-content .form-row-last,
-.woocommerce-account-content .form-row-wide {
-  width: 100%;
-  float: none;
-}
-
-/* MOBILE ADDRESS PAGE STYLING */
-.woocommerce-account-content .woocommerce-Addresses {
-  display: block;
-  padding: 15px;
-}
-
-.woocommerce-account-content .woocommerce-Address {
-  background: var(--bg-white);
-  padding: 20px;
-  border-radius: var(--border-radius-small);
-  border: 2px solid var(--border-color);
-  box-shadow: var(--shadow-light);
-  margin-bottom: 20px;
-}
-
-.woocommerce-account-content .woocommerce-Address-title {
-  margin-bottom: 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: 10px;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.woocommerce-account-content .woocommerce-Address-title h2 {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--text-color);
-  margin: 0;
-}
-
-.woocommerce-account-content .woocommerce-Address-title .edit {
-  background: var(--primary-color);
-  color: var(--text-white);
-  padding: 8px 16px;
-  border-radius: var(--border-radius-small);
-  font-size: 12px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-}
-
-.woocommerce-account-content .woocommerce-Address-title .edit:hover {
-  background: var(--primary-dark);
-  transform: translateY(-2px);
-}
-
-.woocommerce-account-content .woocommerce-Address address {
-  font-style: normal;
-  line-height: 1.6;
-  color: var(--text-color);
-  font-size: 14px;
-}
-
-/* MOBILE DASHBOARD CONTENT */
-.woocommerce-account-content .woocommerce-MyAccount-content {
-  padding: 20px 15px;
-}
-
-.woocommerce-account-content .woocommerce-MyAccount-content p {
-  color: var(--text-color);
-  line-height: 1.6;
-  margin-bottom: 15px;
-  font-size: 14px;
-}
-
-/* MOBILE DOWNLOADS PAGE */
-.woocommerce-account-content .woocommerce-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
-  background: var(--bg-white);
-  border-radius: var(--border-radius-small);
-  overflow: hidden;
-  box-shadow: var(--shadow-light);
-  font-size: 14px;
-}
-
-.woocommerce-account-content .woocommerce-table th,
-.woocommerce-account-content .woocommerce-table td {
-  padding: 12px 8px;
-  text-align: left;
-  border-bottom: 1px solid var(--border-color);
-  word-wrap: break-word;
-}
-
-.woocommerce-account-content .woocommerce-table th {
-  background: var(--bg-light);
-  font-weight: 600;
-  color: var(--text-color);
-  font-size: 12px;
-}
-
-.woocommerce-account-content .woocommerce-table tbody tr:hover {
-  background: var(--primary-light);
-}
-
-/* ==============================================
-   Orders List Layout - Mobile First
-   ============================================== */
-
-.orderallmaindiv {
-  padding: 0px 15px;
-  margin-top: 15px;
-  width: 100%;
-  overflow-x: hidden;
-}
-
-.order-user-list {
-  margin-bottom: 20px;
-}
-
-.ordermainbox {
-  border: 1px solid #E8E8E8;
-  border-radius: 10px;
-  padding: 12px;
-  background: var(--bg-white);
-  box-shadow: var(--shadow-light);
-  width: 100%;
-  overflow-x: hidden;
-}
-
-.orderboxtop {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 12px;
-  border-bottom: 1px solid rgba(205, 205, 205, 0.3);
-}
-
-.orderidmain {
-  color: #D97706;
-  font-size: 12px;
-  font-weight: 600;
-}
-
-.order-date {
-  font-size: 12px;
-  font-weight: 500;
-  color: #717171;
-  margin-top: 8px;
-}
-
-.order-product-section {
-  padding: 12px 0px 0px;
-  width: 100%;
-  overflow-x: hidden;
-}
-
-.order-product-section ~ .order-product-section {
-  border-top: 1px solid rgba(205, 205, 205, 0.3);
-  margin-top: 12px;
-}
-
-.order-content {
-  display: grid;
-  grid-template-columns: 1fr 2.64fr;
-  gap: 12px;
-  width: 100%;
-  overflow-x: hidden;
-}
-
-.pimg {
-  width: 100%;
-  height: auto;
-  position: relative;
-  background: #e7e7e7;
-  border-radius: 8px;
-  overflow: hidden;
-  aspect-ratio: 3 / 4;
-}
-
-.pimg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.pdetails {
-  width: 100%;
-  display: grid;
-  gap: 8px;
-  height: fit-content;
-  min-width: 0;
-  overflow: hidden;
-}
-
-.pdetails h4,
-.pname {
-  font-size: 14px;
-  color: #212121;
-  font-weight: 500;
-  line-height: 1.4;
-  margin: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-}
-
-.pname {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.pname span {
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.order-product-details {
-  display: flex;
-  font-size: 12px;
-  gap: 10px;
-  color: rgba(148, 148, 148, 1);
-  text-transform: capitalize;
-  flex-wrap: wrap;
-}
-
-.order-product-details p {
-  line-height: 1.4;
-  margin: 0;
-}
-
-.qty,
-.pqty {
-  color: rgba(148, 148, 148, 1);
-  font-size: 12px;
-  margin-top: 10px;
-}
-
-.pprice {
-  margin-top: 10px;
-  color: var(--success-color);
-  font-weight: 600;
-  font-size: 14px;
-}
-
-.pprice-status {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.p-status {
-  padding: 6px 12px;
-  font-size: 12px;
-  font-weight: 400;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 96px;
-  text-transform: capitalize;
-}
-
-/* Status colors */
-.p-status {
-  color: #00A3FF;
-  border: 1px solid #00A3FF;
-  background: rgba(0, 163, 255, 0.1);
-}
-
-.p-status.status-completed,
-.p-status.status-delivered {
-  color: #00C853;
-  border: 1px solid #00C853;
-  background: rgba(0, 200, 83, 0.1);
-}
-
-.p-status.status-processing {
-  color: #00A3FF;
-  border: 1px solid #00A3FF;
-  background: rgba(0, 163, 255, 0.1);
-}
-
-.p-status.status-cancelled,
-.p-status.status-refunded {
-  color: #DC3545;
-  border: 1px solid #DC3545;
-  background: rgba(220, 53, 69, 0.1);
-}
-
-.p-status .mainstatus {
-  text-transform: capitalize;
-}
-
-/* ==============================================
-   Order Details Page - Mobile Layout (FIXED)
-   ============================================== */
-
-.orderinfomain {
-  padding-bottom: 80px;
-  background: var(--bg-white);
-  min-height: 100vh;
-  width: 100%;
-  overflow-x: hidden;
-}
-
-.filter-button {
-  background: none;
-  border: none;
-  padding: 5px;
-  cursor: pointer;
-}
-
-.filteraccount {
-  width: 25px;
-  height: 25px;
-}
-
-/* ==============================================
-   Order Info Container - COMPLETELY FIXED
-   ============================================== */
-
-.orderinfo-container {
-  border-bottom: 1px solid #F5F5F5;
-  background: var(--bg-white);
-  width: 100%;
-  overflow-x: hidden;
-}
-
-.orderinfo {
-  padding: 15px;
-  background: var(--bg-white);
-  width: 100%;
-  overflow-x: hidden;
-  display: flex;
-  gap: 12px;
-}
-
-.orderinfo .pimg {
-  width: 35%;
-  min-height: 144px;
-  position: relative;
-  background: rgba(231, 231, 231, 1);
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.orderinfo .pdetails {
-  width: 65%;
-}
-
-.imagemain {
-  height: 100%;
-  position: relative;
-  width: 100%;
-}
-
-.imagemain img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.orderstatusimg {
+  width: 36px;
+  height: 36px;
+  display: inline-block;
+  font-size: 0;
+  color: transparent;
+  border-radius: 50%;
+}
+
+.nasa-stclose:before,
+.nasa-stclose:after {
+  content: "";
+  width: 16px;
+  height: 0;
   position: absolute;
-  bottom: 4px;
-  right: 4px;
-  padding: 2px 6px;
-  background: var(--success-color);
-  color: #fff;
-  font-size: 9px;
-  font-weight: 600;
-  border-radius: 4px;
-  text-transform: uppercase;
+  top: 17px;
+  left: 10px;
+  border-top: 1px solid #333;
 }
 
-.ordernumber {
+.nasa-stclose:before { transform: rotate(-45deg); }
+.nasa-stclose:after { transform: rotate(45deg); }
+.nasa-stclose:hover { background: #f1f1f1; }
+
+.nasa-close-sidebar {
+  text-indent: -999999px;
+  color: inherit;
+  position: absolute;
+  z-index: 1;
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  width: 45px;
+  height: 45px;
   display: flex;
-  align-items: center;
-  gap: 8px;
   justify-content: center;
-  margin-top: 15px;
-  padding: 10px;
-  background: rgba(245, 245, 245, 0.8);
-  border-radius: 8px;
-  width: 100%;
-  border-top: 1px solid rgba(231, 231, 231, 1);
-}
-
-.ordernumber span {
-  font-size: 12px;
-  font-weight: 600;
-  color: #212121;
-  white-space: nowrap;
-}
-
-.ordernumber img {
-  width: 12px !important;
-  height: 12px !important;
-  border-radius: 0px !important;
-}
-
-.orderinfo .pdetails .pname {
-  font-size: 14px;
-  color: #212121;
-  font-weight: 500;
-  margin-bottom: 4px;
-  line-height: 1.3;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  word-wrap: break-word;
-}
-
-.productcategoryname {
-  color: rgba(113, 113, 113, 1);
-  font-size: 11px;
-  margin-bottom: 6px;
-  text-transform: capitalize;
-  display: block;
-  font-weight: 400;
-  line-height: 1.2;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.orderinfo .order-product-details {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  font-size: 12px;
-  gap: 6px;
-  color: rgba(148, 148, 148, 1);
-  text-transform: capitalize;
-  font-weight: 400;
-  flex-wrap: wrap;
-  line-height: 1.4;
-  margin-bottom: 4px;
-}
-
-.orderinfo .order-product-details p {
-  margin: 0;
-  white-space: nowrap;
-}
-
-.orderinfo .qty {
-  color: rgba(148, 148, 148, 1);
-  font-size: 11px;
-  font-weight: 400;
-  margin: 0;
-}
-
-.orderinfo .pprice {
-  color: var(--success-color);
-  font-weight: 600;
-  font-size: 13px;
-  margin: 4px 0 0 0;
-}
-
-.trackid {
-  display: flex;
   align-items: center;
-  margin-top: 6px;
-  gap: 4px;
+  border-radius: 50%;
+}
+
+.nasa-close-sidebar:hover {
+  background: #f76b6a;
+  border-color: #f76b6a;
+  color: #fff;
+}
+
+.nasa-close-sidebar:hover:before { color: #fff; }
+
+/* Toggle Widgets */
+.nasa-open-toggle { display: block; }
+.nasa-toggle-widget { cursor: pointer; }
+.nasa-toggle-widget:not(.nasa-hide)::after { content: '-'; }
+
+/* Variation Filters */
+.nasa-variation-filters {
+  display: flex;
   flex-wrap: wrap;
 }
 
-.trackingidheading {
-  font-weight: 600;
-  color: #434242;
-  font-size: 11px;
+/* ===================================
+   COLOR SWATCH FLEX CONFLICT FIX
+   =================================== */
+.nasa-variations-color .nasa-flex {
+    width: auto !important;
+    display: inline-flex !important;
 }
 
-.ittracking {
-  font-weight: 600;
-  color: #666666;
-  font-size: 11px;
-  word-break: break-all;
+.nasa-filter-color-span {
+    min-width: 30px;
+    flex-shrink: 0;
 }
 
-.orderlocationstatus {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 8px;
+@media (max-width: 767px) {
+    .nasa-variations-color .nasa-flex {
+        width: auto !important;
+    }
+    .nasa-filter-color-span {
+        min-width: 28px;
+    }
 }
 
-.statusmain {
-  background: var(--primary-color);
-  color: #fff;
-  padding: 4px 10px;
-  border-radius: 4px;
-  font-weight: 600;
-  font-size: 11px;
-  text-transform: capitalize;
+/* Price Filter Widget */
+.widget_price_filter .price_slider { margin-bottom: 1em; background: #eee; }
+
+
+
+/* ===================================
+   MOBILE COLOR SWATCH STYLES
+   =================================== */
+.nasa-filter-color-span {
+    position: relative;
+    width: 28px; /* Slightly smaller for mobile */
+    height: 28px;
+    border-radius: 50%;
+    display: inline-flex;
+    margin-right: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
-/* ==============================================
-   Order Tracking Section - FIXED
-   ============================================== */
-
-.orderprocerss {
-  padding: 15px;
-  border-bottom: 1px solid #F5F5F5;
-  background: var(--bg-white);
-  width: 100%;
-  overflow-x: hidden;
+/* Single color (100% full circle) */
+.nasa-filter-color-span > span {
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
-.productlivelocation {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: auto;
+/* Two-color version (50% each) */
+.nasa-filter-color-span > span:first-child:nth-last-child(2),
+.nasa-filter-color-span > span:first-child:nth-last-child(2) ~ span {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+}
+
+.nasa-filter-color-span > span:first-child:nth-last-child(2) {
+    left: 0;
+}
+
+.nasa-filter-color-span > span:first-child:nth-last-child(2) ~ span {
+    left: 50%;
+}
+
+/* Text label styling - mobile specific */
+.nasa-text-variation-color {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 14px; /* Slightly smaller font for mobile */
+    margin-left: 5px;
+}
+
+/* Mobile filter item spacing */
+.nasa-in-mobile .nasa-variation-filters li {
+    margin-bottom: 8px;
+    padding: 0 5px !important;
+}
+
+/* Adjust filter links for mobile */
+.nasa-in-mobile .nasa-variation-filters a {
+    padding-left: 36px; /* Adjusted for smaller swatch */
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+/* Mobile checkbox indicator positioning */
+.nasa-in-mobile .nasa-variation-filters a:after {
+    top: 7px;
+    left: 10px;
+}
+
+.nasa-variation-filters a {
+  display: inline-block;
+  line-height: 20px;
+  position: relative;
+  padding-left: 40px;
+  padding-top: 5px;
   padding-bottom: 5px;
 }
 
-.icon-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  min-width: 300px;
-  padding: 0 10px;
-  position: relative;
-  margin-bottom: 15px;
-}
-
-.icon-item {
-  border-radius: 50%;
-  width: 35px;
-  height: 35px;
-  min-width: 35px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--bg-white);
-  border: 2px solid var(--border-color);
-  z-index: 2;
-  transition: all 0.4s ease;
-  position: relative;
-  flex-shrink: 0;
-}
-
-.icon-item img {
-  width: 18px;
-  height: 18px;
-  min-width: 18px;
-}
-
-.icon-item.active {
-  background: var(--primary-color);
-  border-color: var(--primary-color);
-}
-
-.icon-item.active img {
-  filter: brightness(0) invert(1);
-}
-
-.line {
-  flex: 1;
-  height: 2px;
-  background-color: #d3d3d3;
-  margin: 0 5px;
-  transition: all 0.4s ease;
-  min-width: 30px;
-}
-
-.line.active {
-  background: var(--primary-color);
-}
-
-.itemstatusmain {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  width: 100%;
-  min-width: 300px;
-  padding: 0 10px;
-}
-
-.itemstatusmain .p-status {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 9px;
-  color: #464646;
-  font-weight: 600;
-  text-align: center;
-  flex: 1;
-  min-width: 60px;
-  flex-shrink: 0;
-}
-
-.itemstatusmain .p-status.active span {
-  color: var(--primary-color);
-  font-weight: 700;
-}
-
-.pstatusname {
-  text-transform: uppercase;
-  line-height: 1.2;
-  word-break: break-word;
-  text-align: center;
-}
-
-/* ==============================================
-   Shipping & Billing Sections - FIXED
-   ============================================== */
-
-.shippingaddress {
-  padding: 15px;
-  background: var(--bg-white);
-  border-bottom: 1px solid #F5F5F5;
-  width: 100%;
-  overflow-x: hidden;
-}
-
-.shippingmain {
-  background: #F5F5F5;
-  padding: 12px;
-  border-radius: 8px;
-  width: 100%;
-}
-
-.headingshipping {
-  color: #343434;
-  font-size: 14px;
-  font-weight: 600;
-  text-transform: capitalize;
-  margin-bottom: 8px;
-  line-height: 1.4;
-}
-
-.shippinmgaddress {
-  color: #5F5F5F;
-  font-size: 12px;
-  line-height: 1.5;
-  margin: 0;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-}
-
-.updatesend-to {
-  padding: 15px;
-  border-bottom: 1px solid #E6E6E6;
-  background: var(--bg-white);
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  width: 100%;
-  overflow-x: hidden;
-}
-
-.updatesend-to div img {
-  width: 16px !important;
-  height: 16px !important;
-  flex-shrink: 0;
-}
-
-.upheading {
-  color: #343434;
-  font-size: 14px;
-  font-weight: 600;
-  text-transform: capitalize;
-  margin-bottom: 12px;
-}
-
-.updatesend-to div {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 8px;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  width: 100%;
-}
-
-.updatesend-to div span {
-  font-size: 13px;
-  font-weight: normal;
-  color: #7F7F7F;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  flex: 1;
-  min-width: 0;
-}
-
-.price-section-account {
-  padding: 15px;
-  background: var(--bg-white);
-  width: 100%;
-  overflow-x: hidden;
-}
-
-.total-items {
-  padding-bottom: 12px;
-  border-bottom: 1px solid #E6E6E6;
-}
-
-.items-heading {
-  color: #212121;
-  font-weight: 600;
-  font-size: 14px;
-  margin: 0;
-}
-
-.price-section {
-  padding: 12px 0 8px 0;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-.mrp-text {
-  padding: 0 0 15px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.checkoutvalue {
-  font-size: 13px;
-  color: #212121;
-  font-weight: 400;
-}
-
-.checkout-shipping-text {
-  font-size: 13px;
-  color: #212121;
-  font-weight: 500;
-}
-
-.total-amount {
-  padding: 12px 0;
-  border-top: 1px solid rgba(240, 240, 240, 1);
-  border-bottom: 1px solid rgba(240, 240, 240, 1);
-}
-
-.total-amount .inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.total-amount .inner span {
-  font-weight: 700;
-  font-size: 14px;
-  color: #212121;
-}
-
-/* ==============================================
-   Avatar Upload Section
-   ============================================== */
-
-.avatar-upload-section {
-  position: relative;
-  display: inline-block;
-}
-
-.avatar-upload-input {
+.nasa-variation-filters a:after {
+  content: "";
+  width: 6px;
+  height: 10px;
+  display: block;
+  border: solid transparent;
+  border-width: 0 2px 2px 0;
   position: absolute;
-  opacity: 0;
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-  z-index: 2;
+  top: 9px;
+  left: 12px;
+  transform: rotate(45deg);
 }
 
-.avatar-upload-overlay {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  background: var(--primary-color);
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 3;
-  border: 2px solid white;
+.nasa-variation-filters a:hover:after { border-color: #555; }
+
+/* Price Filter Widget */
+.widget_price_filter .price_slider { margin-bottom: 1em; background: #eee; }
+.widget_price_filter .price_slider_amount {
+  text-align: right;
+  line-height: 2.4em;
+  font-size: 0.8751em;
 }
 
-.avatar-upload-overlay svg {
-  width: 12px;
-  height: 12px;
-  fill: white;
-}
-
-/* Default avatar with better styling */
-.default-avatar {
-  width: 80px;
-  height: 80px;
-  margin: auto;
-  border: 2px solid #ddd;
-  padding: 0;
-  font-size: 32px;
-  text-transform: uppercase;
-  border-radius: 50%;
+.widget_price_filter .price_slider_amount input#min_price,
+.widget_price_filter .price_slider_amount input#max_price {
+  display: none;
+  float: left;
+  width: 25%;
+  height: 32px;
+  margin-right: 12px;
+  font-size: 110%;
   text-align: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  letter-spacing: 1px;
 }
 
-.user-avatar-img {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid #ddd;
+.widget_price_filter .price_slider_amount .price_label {
+  float: left;
+  font-size: 125%;
+  line-height: 230%;
+  margin-bottom: 10px;
+  position: relative;
 }
 
-/* ==============================================
-   Sticky Help Button - Fixed Color
-   ============================================== */
-
-.button-bottom-fixed,
-.help-button-container {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 20px;
-  background: #fff;
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-  z-index: 9;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.widget_price_filter .ui-slider {
+  position: relative;
+  text-align: left;
 }
 
-.button-bottom-fixed a,
-.help-button-container a,
-.btn-yellow {
-  width: 100%;
-  max-width: 500px; /* optional: to limit how wide the button grows on large screens */
-  background: var(--wilddragon-secondary-dark) !important;
-  color: #fff !important;
-  font-family: inherit;
-  font-weight: 900;
-  font-size: 18px;
-  letter-spacing: 0.5px;
-  padding: 0.75em 1.5em;
-  border: 3px solid #000 !important;
-  border-radius: 0.5em;
-  box-shadow:
-    0.1em 0.1em 0 #000,
-    0 4px 12px rgba(0, 0, 0, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  box-sizing: border-box;
-  background-clip: padding-box;
+.widget_price_filter .ui-slider .ui-slider-handle {
+  position: absolute;
+  z-index: 2;
+  cursor: pointer;
   outline: none;
-  cursor: pointer;
-  position: relative;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    background-color 0.2s ease,
-    color 0.2s ease;
+  top: -0.5em;
 }
 
-.button-bottom-fixed a:hover,
-.help-button-container a:hover,
-.btn-yellow:hover {
-  background: var(--wilddragon-secondary-hover) !important;
-  color: #fff !important;
-  transform: translate(-0.05em, -0.05em);
-  box-shadow:
-    0.15em 0.15em 0 #000,
-    0 6px 16px rgba(0, 0, 0, 0.3);
-}
+.widget_price_filter .ui-slider .ui-slider-handle:last-child { margin-left: 0; }
 
-.button-bottom-fixed a:active,
-.help-button-container a:active,
-.btn-yellow:active {
-  transform: translate(0.05em, 0.05em);
-  box-shadow:
-    0.05em 0.05em 0 #000,
-    0 2px 6px rgba(0, 0, 0, 0.2);
-}
-
-.button-bottom-fixed a::after,
-.help-button-container a::after,
-.btn-yellow::after {
-  content: '';
+.widget_price_filter .ui-slider .ui-slider-handle:before {
+  content: "";
+  display: inline-block;
   position: absolute;
-  top: 0;
-  left: -75%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(
-    120deg,
-    rgba(255, 255, 255, 0.15) 0%,
-    rgba(255, 255, 255, 0.05) 100%
-  );
-  transform: skewX(-20deg);
-  pointer-events: none;
-  transition: left 0.5s ease;
+  width: 28px;
+  height: 28px;
+  left: -14px;
+  top: -6px;
+  border: 1px solid #999999;
+  border-radius: 50%;
+  background-color: #fff;
 }
 
-.button-bottom-fixed a:hover::after,
-.help-button-container a:hover::after,
-.btn-yellow:hover::after {
-  left: 125%;
+.widget_price_filter .ui-slider .ui-slider-handle:after {
+  display: inline-block;
+  position: absolute;
+  content: " ";
+  width: 8px;
+  height: 8px;
+  left: -3px;
+  top: 5px;
+  border-radius: 2px;
+  background-color: #fff !important;
+  transform: scale(1, 1);
 }
 
-.button-bottom-fixed img,
-.help-button-container img {
+.widget_price_filter .ui-slider .ui-slider-range {
+  position: absolute;
+  z-index: 1;
+  font-size: 0.7em;
+  display: block;
+  border: 0;
+  background: #c1c1c1;
+}
+
+.widget_price_filter .price_slider_wrapper { padding-top: 15px; }
+
+.widget_price_filter .price_slider_wrapper .reset_price {
+  font-size: 0;
+  color: transparent;
+  border-radius: 50%;
+  border: 1px solid;
+  border-color: #ddd;
   width: 20px;
   height: 20px;
+  position: absolute;
+  top: 48%;
+  right: -30px;
+  transform: translateY(-50%);
+}
+
+.widget_price_filter .price_slider_wrapper .reset_price:before,
+.widget_price_filter .price_slider_wrapper .reset_price:after {
+  top: 9px;
+  left: 4px;
+  width: 10px;
+}
+
+.widget_price_filter .ui-slider-horizontal {
+  height: 0.3em;
+  margin-left: 14px;
+  margin-right: 14px;
+}
+
+.widget_price_filter .ui-slider-horizontal .ui-slider-range {
+  top: 0;
+  height: 100%;
 }
 
 
-/* ==============================================
-   Filter Popup Styles - FIXED Z-INDEX
-   ============================================== */
-
-.filterpopup {
-  max-height: 0%;
-  transition: max-height 0.30s ease-out;
+/* Part 2 - Sidebar and Mobile Styles */
+.nasa-top-sidebar { padding-top: 0; }
+.nasa-top-sidebar .nasa-toggle-widget { display: none; }
+.nasa-top-sidebar .widget_price_filter .price_slider_amount .price_label { margin-bottom: 0; }
+.nasa-top-sidebar .nasa-widget-wrap {
+  display: none;
   overflow: hidden;
+}
+
+.nasa-top-sidebar .nasa-widget-wrap .widget-title { display: none; }
+.nasa-top-sidebar .nasa-widget-wrap .widget_price_filter .price_slider_wrapper { padding-bottom: 0; }
+.nasa-top-sidebar .nasa-widget-wrap .widget_price_filter form { margin-bottom: 0; }
+
+/* Mobile Layout */
+.nasa-in-mobile .nasa-top-sidebar .nasa-widget-wrap {
+  padding-bottom: 10px;
+  margin-top: 25px;
+}
+
+.nasa-in-mobile .nasa-top-sidebar .nasa-widget-wrap:last-child { border-bottom: none; }
+.nasa-in-mobile .nasa-top-sidebar .widget { position: relative; }
+
+.nasa-in-mobile .nasa-top-sidebar .widget .widget-title {
+  margin-bottom: 0.5em;
+  padding-right: 20px;
+  font-size: 140%;
+  margin-top: 0;
+  line-height: 25px;
+}
+
+.nasa-in-mobile .nasa-top-sidebar .widget.nasa-inited .nasa-toggle-widget { display: block; }
+.nasa-in-mobile .nasa-top-sidebar .nasa-toggle-widget {
+  position: absolute;
   display: none;
-  z-index: 10000; /* Increased z-index */
-}
-
-.filterpopup .fixed {
-  background-color: rgba(32, 32, 32, .7);
-  position: fixed;
-  inset: 0px;
-  z-index: 10001; /* Higher than sidebar */
-  overflow-y: overlay;
-}
-
-.popupmain {
-  max-height: 0;
-  visibility: hidden;
-  display: block;
-  box-sizing: border-box;
-  position: fixed;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-  z-index: 10002; /* Highest z-index */
+  top: 0;
+  right: 0;
   width: 100%;
-  max-width: 100%;
-  overflow: hidden auto;
-  background-color: rgb(255, 255, 255);
-  border-radius: 8px 8px 0px 0px;
-  transition: max-height 0.5s ease-in-out;
-  padding: 20px 15px;
+  height: 25px;
 }
 
-.filterpopup.show .popupmain {
-  max-height: 600px;
-  visibility: visible;
+.nasa-in-mobile .nasa-top-sidebar .nasa-toggle-widget:before,
+.nasa-in-mobile .nasa-top-sidebar .nasa-toggle-widget:after {
+  display: inline-block;
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 2px;
+  right: 0;
+  top: 11px;
+  border-top: 5px solid #333;
 }
 
-.poptopheading {
-  font-size: 20px;
-  font-weight: 600;
-}
+.nasa-in-mobile .nasa-top-sidebar .nasa-open-toggle .nasa-filter-variations-widget-wrap { padding-top: 10px; }
+.nasa-in-mobile.nasa-mobile-app .nasa-widget-wrap { margin-top: 60px; }
 
-.productstatuspop {
-  margin-top: 30px;
-}
-
-.fileterorder span {
-  font-size: 16px;
-  margin-bottom: 15px;
-  display: block;
-  color: #393939;
-}
-
-.allfilterpopup {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.allfilterpopup input[type="radio"] {
-  display: none;
-}
-
-.allfilterpopup span {
-  width: 90px;
-  height: 32px;
-  display: flex;
-  justify-content: center;
-  border: 1px solid #AFAFAF;
-  margin-bottom: 0px;
-  padding: 5px;
-  border-radius: 20px;
-  align-items: center;
-  font-size: 12px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-input[type="radio"]:checked + span {
-  background: var(--wilddragon-secondary-hover);
-  color: #ffffff;
-  border: 1px solid var(--wilddragon-secondary-hover);
-}
-
-.appleyandcancle {
-  display: flex;
-  justify-content: flex-end;
-  gap: 20px;
-  align-items: center;
-  padding-top: 20px;
-}
-
-.appleyandcancle span {
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.appleyandcancle span.canclepop {
-  color: #B6B6B6;
-  border: 1px solid #B6B6B6;
-  padding: 8px 16px;
-  font-size: 14px;
-  border-radius: 5px;
-}
-
-.appleyandcancle span.applepop {
-  color: #ffffff;
-  border: 1px solid #B6B6B6;
-  padding: 8px 16px;
-  font-size: 14px;
-  border-radius: 5px;
-  background: var(--wilddragon-secondary-hover);
-}
-
-/* ==============================================
-   Logout Popup Styles
-   ============================================== */
-
-.logout-popup {
+/* Mobile Sidebar */
+.nasa-in-mobile .columns.nasa-top-sidebar {
   position: fixed;
+  z-index: 401;
   top: 0;
   left: 0;
-  right: 0;
   bottom: 0;
-  z-index: 10000;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
+  width: 380px;
+  max-width: 80%;
+  padding: 0;
+  background: #fff;
+  transform: translateX(-100%);
 }
 
-.popup-overlay {
+.nasa-in-mobile .columns.nasa-top-sidebar.nasa-active { transform: translateX(0); }
+.nasa-in-mobile .columns.nasa-top-sidebar.nasa-active .nasa-close-sidebar { transform: translateX(50%); }
+.nasa-in-mobile .columns.nasa-top-sidebar .nasa-close-sidebar {
+  top: 30px;
+  right: 0;
+  transform: translateX(0);
+  box-shadow: none;
+}
+
+.nasa-in-mobile .columns.nasa-top-sidebar .nasa-close-sidebar:before { content: "\7a"; }
+.nasa-in-mobile .columns.nasa-top-sidebar .nasa-close-sidebar:hover { box-shadow: 0 0 6px 0 rgba(1, 1, 1, 0.3); }
+
+/* Off-canvas Content */
+.nasa-in-mobile .columns.nasa-top-sidebar .nasa-top-sidebar-off-canvas {
   position: absolute;
   top: 0;
+  bottom: 0;
   left: 0;
   right: 0;
-  bottom: 0;
+  margin: 0;
+  overflow-y: auto;
+  padding: 15px 20px;
+  direction: rtl;
 }
 
-.popup-content {
-  background: white;
-  border-radius: 12px;
-  padding: 30px;
-  max-width: 400px;
-  width: 100%;
-  text-align: center;
+.nasa-in-mobile .columns.nasa-top-sidebar .nasa-widget-wrap { display: block !important; }
+.nasa-in-mobile .columns.nasa-top-sidebar .nasa-widget-wrap .widget-title { display: inherit; }
+
+/* Top Bar Mobile Styles */
+.nasa-in-mobile .nasa-topbar-all .nasa-filter-action { min-width: 20%; }
+.nasa-in-mobile .nasa-topbar-all .nasa-sort-by-action { width: auto; justify-content: flex-end; }
+.nasa-in-mobile .top-bar-wrap-type-1 { clear: both; }
+
+.nasa-in-mobile .top-bar-wrap-type-1 .toggle-topbar-shop-mobile {
+  display: flex;
+  align-items: center;
+  line-height: 44px;
+  font-size: 110%;
+  float: left;
+  margin-right: 20px;
+}
+
+.nasa-in-mobile .top-bar-wrap-type-1 .toggle-topbar-shop-mobile svg { height: 20px; width: 20px; }
+.nasa-in-mobile .top-bar-wrap-type-1 .nasa-top-row-filter li { display: none !important; }
+.nasa-in-mobile .top-bar-wrap-type-1 .nasa-labels-filter-top .nasa-top-row-filter li { margin-left: 0; margin-right: 0; }
+.nasa-in-mobile .top-bar-wrap-type-1 .nasa-labels-filter-top .nasa-labels-filter-accordion { display: none; }
+
+/* WooCommerce Ordering Mobile */
+.nasa-in-mobile .woocommerce-ordering {
+  height: 44px;
   position: relative;
   z-index: 1;
+  text-align: right;
+  line-height: 45px;
+  align-items: center;
 }
 
-.popup-content h3 {
-  margin: 0 0 15px 0;
-  font-size: 20px;
-  color: #212121;
+.nasa-in-mobile .woocommerce-ordering:after {
+  position: static;
+  margin: 0 2px;
+  color: #bb1f1f;
+  content: url("data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgdmlld0JveD0iMCAwIDMyIDMyIj4KPHBhdGggZD0iTTI4LjI2MiA1Ljg3YzAtMS40NzItMS4xOTQtMi42NjUtMi42NjYtMi42NjVzLTIuNjY2IDEuMTkzLTIuNjY2IDIuNjY1YzAgMS4yODkgMC45MTYgMi4zNjUgMi4xMzMgMi42MTJ2MTguMThoMS4wNjZ2LTE4LjE4YzEuMjE3LTAuMjQ3IDIuMTMzLTEuMzIzIDIuMTMzLTIuNjEyek0yNS41OTYgNy40N2MtMC44ODIgMC0xLjU5OS0wLjcxNy0xLjU5OS0xLjU5OXMwLjcxNy0xLjU5OSAxLjU5OS0xLjU5OWMwLjg4MiAwIDEuNTk5IDAuNzE3IDEuNTk5IDEuNTk5cy0wLjcxNyAxLjU5OS0xLjU5OSAxLjU5OXoiIGZpbGw9ImN1cnJlbnRDb2xvciI+PC9wYXRoPgo8cGF0aCBkPSJNNi45MzcgMjMuNTE3di0xOC4xOGgtMS4wNjZ2MTguMThjLTEuMjE3IDAuMjQ3LTIuMTMyIDEuMzIyLTIuMTMyIDIuNjEyIDAgMS40NzIgMS4xOTQgMi42NjYgMi42NjYgMi42NjZzMi42NjYtMS4xOTQgMi42NjYtMi42NjZjMC0xLjI5LTAuOTE2LTIuMzY1LTIuMTMzLTIuNjEyek02LjQwNCAyNy43MjljLTAuODgyIDAtMS41OTktMC43MTctMS41OTktMS41OTlzMC43MTctMS41OTkgMS41OTktMS41OTkgMS41OTkgMC43MTcgMS41OTkgMS41OTktMC43MTcgMS41OTktMS41OTkgMS41OTl6IiBmaWxsPSJjdXJyZW50Q29sb3IiPjwvcGF0aD4KPHBhdGggZD0iTTE2LjUzMyAxMy4zODh2LTguMDUwaC0xLjA2NnY4LjA1MGMtMS4yMTcgMC4yNDctMi4xMzMgMS4zMjMtMi4xMzMgMi42MTJzMC45MTYgMi4zNjUgMi4xMzMgMi42MTJ2OC4wNTBoMS4wNjZ2LTguMDUwYzEuMjE3LTAuMjQ3IDIuMTMzLTEuMzIzIDIuMTMzLTIuNjEycy0wLjkxNi0yLjM2NS0yLjEzMy0yLjYxMnpNMTYgMTcuNTk5Yy0wLjg4MiAwLTEuNTk5LTAuNzE3LTEuNTk5LTEuNTk5czAuNzE3LTEuNTk5IDEuNTk5LTEuNTk5IDEuNTk5IDAuNzE3IDEuNTk5IDEuNTk5LTAuNzE3IDEuNTk5LTEuNTk5IDEuNTk5eiIgZmlsbD0iY3VycmVudENvbG9yIj48L3BhdGg+Cjwvc3ZnPgo=");
+  line-height: 10px;
 }
 
-.popup-content p {
-  margin: 0 0 25px 0;
-  color: #666;
-  font-size: 16px;
-}
-
-.popup-buttons {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-}
-
-.btn-cancel,
-.btn-confirm {
-  padding: 12px 24px;
+.nasa-in-mobile .woocommerce-ordering select {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: auto;
+  padding: 0;
   border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  background: none;
+  font-weight: 400;
+  text-indent: -9999px;
+  appearance: none;
+  display: block !important;
 }
 
-.btn-cancel {
-  background: #f5f5f5;
-  color: #666;
-}
+.nasa-in-mobile .woocommerce-ordering select option { font-size: 14px; }
+.nasa-in-mobile .sort-bar { position: relative; }
 
-.btn-cancel:hover {
-  background: #e0e0e0;
-}
 
-.btn-confirm {
-  background: #dc3545;
-  color: white;
-}
+/* Part 3 - Responsive Breakpoints & Mobile App Styles */
+@media all {
+  a { background: transparent; }
+  a:hover { cursor: pointer; }
+  a:focus { outline: none; }
+  select { width: 100%; }
 
-.btn-confirm:hover {
-  background: #c82333;
-}
-
-/* ==============================================
-   Loading States & Animations
-   ============================================== */
-
-.loading-spinner {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  border: 3px solid rgba(255,255,255,0.3);
-  border-radius: 50%;
-  border-top: 3px solid var(--text-white);
-  animation: spin 1s linear infinite;
-  vertical-align: middle;
-  margin-right: 8px;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* ==============================================
-   Status Styles - Enhanced with Purple Theme
-   ============================================== */
-
-.order-status,
-.statusmain {
-  display: inline-block;
-  padding: 6px 12px;
-  border-radius: 15px;
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.order-status.status-processing,
-.order-status.status-processing-payment {
-  background-color: var(--primary-color);
-  color: var(--text-white);
-  border: 2px solid var(--primary-dark);
-}
-
-.order-status.status-completed,
-.order-status.status-delivered {
-  background-color: rgba(0, 155, 25, 0.1);
-  color: var(--success-color);
-  border: 2px solid var(--success-color);
-}
-
-.order-status.status-in-transit,
-.order-status.status-shipped {
-  background-color: rgba(0, 133, 255, 0.1);
-  color: #0085FF;
-  border: 2px solid #0085FF;
-}
-
-.order-status.status-rto,
-.order-status.status-failed,
-.order-status.status-cancelled {
-  background-color: rgba(220, 53, 69, 0.1);
-  color: var(--error-color);
-  border: 2px solid var(--error-color);
-}
-
-/* ==============================================
-   Write Review Styles
-   ============================================== */
-
-.write-review-main {
-  display: flex;
-}
-
-.write-review-popup {
-  display: flex;
-  gap: 2px;
-}
-
-/* ==============================================
-   DESKTOP LAYOUT FIXES
-   ============================================== */
-
-@media (min-width: 768px) {
-  /* Fix desktop layout structure */
-  .myaccount-order {
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 30px;
-    padding: 20px;
+  /* Grid System */
+  .row {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+    max-width: 1200px;
+    *zoom: 1;
+  }
+  
+  .row:before, .row:after { content: " "; display: table; }
+  .row:after { clear: both; }
+  
+  .row .row {
+    width: auto;
+    margin-left: -10px;
+    margin-right: -10px;
+    margin-top: 0;
+    margin-bottom: 0;
+    max-width: none;
+    *zoom: 1;
+  }
+  
+  .columns {
+    position: relative;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+    float: left;
   }
 
-
-  .leftside-my-account {
-    width: 350px;
-    position: sticky;
-    top: 20px;
-    height: fit-content;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-light);
-  }
-
-  .mobile-menu-toggle {
-    display: none;
-  }
-
-  .userprofileleft,
-  .leftside-my-account .myaccountnavigationtab {
+  /* Block Grids */
+  [class*="block-grid-"] {
     display: block;
-  }
-
-  .rightside-my-account {
-    flex: 1;
-    min-width: 0;
-    background: var(--bg-white);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-light);
-  }
-
-  /* Desktop WooCommerce content styling */
-  .woocommerce-account-content {
-    padding: 30px;
-  }
-
-  .woocommerce-account-content .woocommerce-form,
-  .woocommerce-account-content .woocommerce-address-fields,
-  .woocommerce-account-content .woocommerce-EditAccountForm {
-    padding: 30px;
-    border-radius: var(--border-radius-small);
-    box-shadow: var(--shadow-light);
-    border: 1px solid var(--border-color);
-  }
-
-  /* Desktop form layout improvements */
-  .woocommerce-account-content .form-row-first,
-  .woocommerce-account-content .form-row-last {
-    width: 48%;
-    display: inline-block;
-  }
-
-  .woocommerce-account-content .form-row-first {
-    margin-right: 4%;
-  }
-
-  .woocommerce-account-content .woocommerce-Addresses {
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    display: grid;
-  }
-
-  /* Remove fixed positioning for help button on desktop */
-  .button-bottom-fixed,
-  .help-button-container {
-    position: static;
-    box-shadow: none;
-    margin-top: 20px;
-  }
-
-  .orderinfo {
-    padding: 25px;
-  }
-  
-  .orderinfo .pimg {
-    width: 35%;
-    min-height: 160px;
-  }
-  
-  .icon-item {
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
-  }
-  
-  .icon-item img {
-    width: 24px;
-    height: 24px;
-  }
-  
-  .itemstatusmain .p-status {
-    font-size: 10px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .leftside-my-account {
-    width: 380px;
-  }
-  
-  .orderinfo {
-    padding: 30px;
-  }
-  
-  .orderinfo .pimg {
-    width: 35%;
-    min-height: 180px;
-  }
-}
-
-/* ==============================================
-   MOBILE RESPONSIVE FIXES
-   ============================================== */
-
-@media (max-width: 480px) {
-  .woocommerce-account-content .woocommerce-form,
-  .woocommerce-account-content .woocommerce-address-fields,
-  .woocommerce-account-content .woocommerce-EditAccountForm {
-    padding: 15px;
-  }
-
-  .woocommerce-account-content input[type="text"],
-  .woocommerce-account-content input[type="email"],
-  .woocommerce-account-content input[type="password"],
-  .woocommerce-account-content input[type="tel"],
-  .woocommerce-account-content select,
-  .woocommerce-account-content textarea {
-    padding: 12px 14px;
-    font-size: 16px; /* Prevents zoom on iOS */
-  }
-
-  .woocommerce-account-content .woocommerce-Address-title {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-
-  .woocommerce-account-content .woocommerce-Address-title .edit {
-    align-self: flex-end;
-  }
-
-  .orderinfo {
-    padding: 12px;
-  }
-  
-  .orderinfo .pimg {
-    width: 35%;
-    min-height: 120px;
-  }
-  
-  .orderinfo .pdetails .pname {
-    font-size: 13px;
-  }
-  
-  .icon-container {
-    min-width: 280px;
-    padding: 0 5px;
-  }
-  
-  .icon-item {
-    width: 30px;
-    height: 30px;
-    min-width: 30px;
-  }
-  
-  .icon-item img {
-    width: 16px;
-    height: 16px;
-  }
-  
-  .itemstatusmain .p-status {
-    font-size: 8px;
-    min-width: 50px;
-  }
-  
-  .itemstatusmain {
-    min-width: 280px;
-  }
-  
-  .line {
-    margin: 0 3px;
-    min-width: 20px;
-  }
-  
-  .top-heading-main {
-    padding: 15px 12px;
-  }
-  
-  .shippingaddress,
-  .updatesend-to,
-  .price-section-account {
-    padding: 12px;
-  }
-}
-
-/* ==============================================
-   Hide unwanted elements
-   ============================================== */
-
-#nasa-footer,
-#cart-sidebar,
-#nasa-wishlist-sidebar,
-#nasa-quickview-sidebar,
-.cart-close,
-.nasa-sidebar-close,
-.nasa-bottom-bar,
-.nasa-transition {
-  display: none !important;
-}
-
-/* ==============================================
-   Accessibility & Focus States
-   ============================================== */
-
-
-
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-  :root {
-    --text-color: #000;
-    --text-light: #333;
-    --border-color: #000;
-  }
-}
-
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/* Print styles */
-@media print {
-  .button-bottom-fixed,
-  .help-button-container,
-  .mobile-menu-toggle,
-  .edit-profile {
-    display: none !important;
-  }
-
-  body {
-    background: none;
     padding: 0;
+    margin: 0 -10px;
+  }
+  
+  [class*="block-grid-"] > li {
+    display: inline;
+    width: 100%;
+    height: auto;
+    float: left;
+    padding: 0 10px 20px 10px;
+  }
+  
+  [class*="block-grid-"]:after {
+    content: "";
+    display: block;
+    clear: both;
   }
 
-  .leftside-my-account,
-  .rightside-my-account {
+  /* Mobile App Specific */
+  .nasa-in-mobile.nasa-mobile-app a { 
+    -webkit-tap-highlight-color: transparent; 
+  }
+
+  .nasa-in-mobile.nasa-mobile-app .filters-container {
+    background: #f5f5f5;
+    padding: 5px 0;
+    margin-bottom: 10px;
+  }
+
+  /* Enhanced Mobile Sidebar */
+  .nasa-in-mobile.nasa-mobile-app .columns.nasa-top-sidebar { 
+    max-width: 90%; 
+  }
+
+  .nasa-in-mobile.nasa-mobile-app .columns.nasa-top-sidebar .ns-sidebar-heading {
+    height: 50px;
+    padding: 0 20px;
+  
+    align-items: center;
+    box-shadow: 2px 1px 3px rgba(0, 0, 0, 0.1);
+    
+    gap: 7px;
+  }
+
+  /* Mobile Close Button */
+  .nasa-in-mobile.nasa-mobile-app .columns.nasa-top-sidebar .nasa-close-sidebar {
+    transform: translate(0, 0);
+    top: 0;
+    height: 50px;
+    float: right;
+    border: none;
+    border-radius: 0;
     box-shadow: none;
-    border: 1px solid #000;
+    background-color: transparent;
+  }
+
+  .nasa-in-mobile.nasa-mobile-app .columns.nasa-top-sidebar .nasa-close-sidebar svg { 
+    display: none; 
+  }
+
+  .nasa-in-mobile.nasa-mobile-app .columns.nasa-top-sidebar .nasa-close-sidebar:before,
+  .nasa-in-mobile.nasa-mobile-app .columns.nasa-top-sidebar .nasa-close-sidebar:after {
+    content: "";
+    width: 20px;
+    height: 0;
+    position: absolute;
+    top: 24px;
+    left: 12px;
+    border-top: 1px solid #333;
+  }
+
+  .nasa-in-mobile.nasa-mobile-app .columns.nasa-top-sidebar .nasa-close-sidebar:before { 
+    transform: rotate(-45deg); 
+  }
+  
+  .nasa-in-mobile.nasa-mobile-app .columns.nasa-top-sidebar .nasa-close-sidebar:after { 
+    transform: rotate(45deg); 
+  }
+
+  /* Off-canvas Content for Mobile App */
+  .nasa-in-mobile.nasa-mobile-app .columns.nasa-top-sidebar .nasa-top-sidebar-off-canvas {
+    border-top: solid 1px #ededed;
+    padding: 0 10px;
+    top: 50px;
+  }
+
+  .nasa-in-mobile.nasa-mobile-app .columns.nasa-top-sidebar .nasa-widget-wrap { 
+    border-bottom: solid 1px #ededed; 
+  }
+  
+  .nasa-in-mobile.nasa-mobile-app .columns.nasa-top-sidebar .nasa-widget-wrap:last-child { 
+    border-color: transparent; 
+  }
+
+  /* Transition Effects */
+  .html-ready .columns.nasa-top-sidebar { 
+    transition: all 400ms ease; 
   }
 }
 
-/* ==============================================
-   Additional Inline Styles Support
-   ============================================== */
-
-/* These were inline style tags. Uses id+class to override almost everything */
-#style-LJt4L.style-LJt4L {
-  display: flex;
-  gap: 20px;
-  padding: 10px 25px 15px 25px;
-  align-items: center;
-  justify-content: space-between;
+/* Responsive Breakpoints */
+@media only screen and (max-width: 767px) {
+  body input, body select { font-size: 16px; }
+  .widget-title { 
+    font-size: 150%; 
+    margin-bottom: 20px; 
+  }
+  
+  .widget:before, .widget:after { 
+    display: none; 
+  }
+  
+  .category-page .filters-container { 
+    padding: 5px 0; 
+  }
+  
+  .category-page .filters-container.top-bar-wrap-type-1 { 
+    padding-top: 10px; 
+    padding-bottom: 10px; 
+  }
+  
+  .small-block-grid-1 > li { 
+    width: 100%; 
+  }
 }
 
-#style-qxoP2.style-qxoP2 {
-  margin-top: 0px;
+@media only screen and (min-width: 768px) {
+  .medium-block-grid-4 > li { 
+    width: 25%; 
+  }
+  
+  .medium-block-grid-4 > li:nth-of-type(4n + 1) { 
+    clear: both; 
+  }
+  
+  .widget [class*="block-grid-"] > li { 
+    width: 100%; 
+  }
 }
 
-#style-NZOEt.style-NZOEt {
-  background: transparent;
-  border: 1px solid rgba(39, 146, 245, 0.8);
-  color: rgba(39, 146, 245, 0.8);
-  text-transform: capitalize;
+
+/* Part 4 - WooCommerce Ordering & Filter Containers */
+/* Variation Filters */
+.nasa-text-variation { color: inherit; }
+
+.nasa-filter-default:before {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  display: block;
+  top: 0;
+  left: 0;
+  background: #eaeaea;
+  border-radius: 50%;
 }
 
-#style-EHx2a.style-EHx2a {
-  background: linear-gradient(90deg, rgba(255, 221, 0, 0.54) 0%, rgba(173, 173, 173, 0.54) 100%);
-  position: relative;
+/* Widget List Items */
+.widget .nasa-variation-filters li { 
+  padding: 0 10px; 
 }
 
-#style-9b4KT.style-9b4KT {
-  position: relative;
+.widget .nasa-variation-filters li:before { 
+  display: none; 
 }
 
-#style-27437.style-27437 {
-  color: rgba(175, 175, 175, 1);
-  padding: 5px 0 0;
+/* Filter Containers */
+.filters-container { 
+  padding: 20px 0; 
 }
 
-#style-24P7T.style-24P7T {
-  color: rgba(175, 175, 175, 1);
-  padding: 5px 0 0;
+.sort-bar { 
+  margin-bottom: 0; 
+  float: left; 
 }
 
-#style-Mm4bx.style-Mm4bx {
-  color: rgba(175, 175, 175, 1);
-  padding: 5px 0 0;
+.sort-bar li { 
+  display: inline-flex; 
+  vertical-align: middle; 
 }
 
-#style-y6adL.style-y6adL {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-#style-1jpRs.style-1jpRs {
-  color: rgba(0, 153, 34, 1);
-  font-size: 13px;
-}
-
-#style-sJvaa.style-sJvaa {
-  text-decoration-line: line-through;
-  color: rgba(0, 0, 0, 0.5);
-  margin-right: 2px;
-}
-
-.style-Kqo1G {
-  font-size: 14px;
-  color: #212121cd;
-  font-weight: 500;
-  line-height: 1.4;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.style-tazxN {
-  overflow: hidden;
+/* WooCommerce Ordering */
+select[name="orderby"] {
+  border: none;
+  font-size: 110%;
+  padding: 0 5px;
+  margin: 0;
+  line-height: 44px;
+  color: inherit;
+  font-weight: normal;
+  outline: none;
+  width: 100%;
+  white-space: nowrap;
   text-overflow: ellipsis;
 }
 
-/* These were inline style tags. Uses id+class to override almost everything */
-#style-NgjaD.style-NgjaD {  
-   width:16px;  
-   height:16px;  
-}  
-#style-s67Un.style-s67Un {  
-   width:80px;  
-   height:80px;  
-   margin:auto;  
-   border:1px solid rgba(116, 116, 116, 1);  
-   padding:4%;  
-   font-size:46px;  
-   text-transform:capitalize;  
-   border-radius:50%;  
-   text-align:center;  
-   background:rgba(229, 229, 229, 1);  
-   display: flex;
-   align-items: center;
-   justify-content: center;
-}  
-#style-A8vXQ.style-A8vXQ {  
-   width:25px;  
-   height:25px;  
-}  
-#style-RvecR.style-RvecR {  
-   width:20px;  
-   height:20px;  
-}  
-#style-Tl7lA.style-Tl7lA {  
-   width:25px;  
-   height:25px;  
-}  
-#style-FBt98.style-FBt98 {  
-   width:20px;  
-   height:20px;  
-}  
-#style-HprGb.style-HprGb {  
-   width:25px;  
-   height:25px;  
-}  
-#style-6fN9Z.style-6fN9Z {  
-   width:20px;  
-   height:20px;  
-}  
-#style-UXzjm.style-UXzjm {  
-   width:25px;  
-   height:25px;  
-}  
-#style-iV1PL.style-iV1PL {  
-   width:20px;  
-   height:20px;  
-}  
-#style-ndMoV.style-ndMoV {  
-   width:25px;  
-   height:25px;  
-}  
-#style-KXNzS.style-KXNzS {  
-   width:20px;  
-   height:20px;  
-}  
-#style-WMqao.style-WMqao {  
-   width:25px;  
-   height:25px;  
-}  
-#style-SzxAe.style-SzxAe {  
-   width:20px;  
-   height:20px;  
-}  
-#style-4rwki.style-4rwki {  
-   width:25px;  
-   height:25px;  
-}  
-#style-kSeEJ.style-kSeEJ {  
-   width:20px;  
-   height:20px;  
-}  
-#style-v1oDM.style-v1oDM {  
-   width:25px;  
-   height:25px;  
-}  
-#style-DJMU4.style-DJMU4 {  
-   width:20px;  
-   height:20px;  
+select[name="orderby"] option {
+  padding: 0 15px;
+  font-weight: normal;
+  font-size: 85%;
 }
+
+/* WooCommerce Overrides */
+.woocommerce .nasa-topbar-filter-wrap form select { 
+  border: none; 
+}
+
+.woocommerce-ordering {
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.woocommerce-ordering select {
+  margin: 0;
+  appearance: none;
+}
+
+/* Ordering Dropdown */
+.woocommerce-ordering .sub-ordering {
+  position: absolute;
+  top: 100%;
+  right: -18px;
+  z-index: 9999;
+  background-color: #fff;
+  border: 1px solid #efefef;
+  padding: 8px 0 10px 0;
+  display: none;
+  flex-direction: column;
+}
+
+.woocommerce-ordering .nasa-current-orderby { 
+  color: #333; 
+}
+
+.woocommerce-ordering .nasa-orderby {
+  display: flex;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding: 0 20px;
+  color: #aaa;
+}
+
+.woocommerce-ordering .nasa-orderby.nasa-active,
+.woocommerce-ordering .nasa-orderby:hover { 
+  color: #333; 
+}
+
+/* Ordering Container */
+.woocommerce-ordering .nasa-ordering {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 10px 0;
+}
+
+/* Type-1 Top Bar */
+.top-bar-wrap-type-1 .woocommerce-ordering .nasa-ordering { 
+  font-size: 105%; 
+}
+
+.top-bar-wrap-type-1 .nasa-topbar-all { 
+  gap: 10px; 
+}
+
+/* Mobile Hidden Elements */
+.nasa-in-mobile .woocommerce-ordering .nasa-ordering { 
+  display: none; 
+}
+
+.nasa-in-mobile .filters-container { 
+  padding: 5px 0; 
+}
+
+/* Responsive Adjustments */
+@media only screen and (max-width: 1024px) {
+  .sort-bar { 
+    position: relative; 
+  }
+}
+
+/* Part 5 - Widget Finishing Styles & Utilities */
+/* Archive Product Variations */
+.nasa-text-variation { 
+  color: inherit; 
+}
+
+/* Filter Default State */
+.nasa-filter-default:before {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  display: block;
+  top: 0;
+  left: 0;
+  background: #eaeaea;
+  border-radius: 50%;
+}
+
+/* Widget List Structure */
+.widget .nasa-variation-filters li {
+  padding: 0 10px;
+  list-style-type: none;
+}
+
+/* Price Filter Widget Enhancements */
+.widget_price_filter .ui-slider-horizontal {
+  height: 0.3em;
+  margin: 0 14px;
+}
+
+.widget_price_filter .ui-slider-horizontal .ui-slider-range {
+  top: 0;
+  height: 100%;
+}
+
+/* Reset Price Button */
+.widget_price_filter .price_slider_wrapper .reset_price {
+  font-size: 0;
+  color: transparent;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 48%;
+  right: -30px;
+  transform: translateY(-50%);
+}
+
+/* Top Bar Mobile Enhancements */
+.nasa-in-mobile .top-bar-wrap-type-1 {
+  clear: both;
+  position: relative;
+}
+
+/* Mobile Toggle Transitions */
+.html-ready .columns.nasa-top-sidebar {
+  transition: transform 400ms ease;
+}
+
+/* Widget Title Consistency */
+.widget-title {
+  font-weight: 600;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+/* Final Utility Classes */
+.nasa-hide { 
+  display: none !important; 
+}
+
+.nasa-flex {
+  display: flex;
+}
+
+.nasa-align-center {
+  align-items: center;
+}
+
+/* Z-index Management */
+.nasa-z-index-1 { z-index: 1; }
+.nasa-z-index-5 { z-index: 5; }
+.nasa-z-index-10 { z-index: 10; }
+
+/* Last Child Overrides */
+.nasa-widget-wrap:last-child,
+.nasa-variation-filters li:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+/* SVG Icon Positioning */
+.nasa-icon svg {
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+/* Final Responsive Tweaks */
+@media (max-width: 480px) {
+  .nasa-variation-filters a {
+    padding-left: 35px;
+  }
+  
+  .widget_price_filter .price_slider_amount .price_label {
+    font-size: 110%;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .nasa-top-sidebar,
+  .nasa-toggle-widget {
+    display: none !important;
+  }
+}
+
